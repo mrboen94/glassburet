@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import ScheduleContainer from "./components/ScheduleContainer";
+import EventCard from "./components/EventCard";
+import data from "./data/timeplan.json";
+
+const d = new Date();
+const day = d.getDay();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mx-auto">
+      <ScheduleContainer>
+        <p>this is a test</p>
+        {data.map(() => (
+          <EventCard>stuff: {day}</EventCard>
+        ))}
+      </ScheduleContainer>
     </div>
   );
 }
