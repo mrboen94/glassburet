@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Day } from "../components/EventCard";
+import { Day } from "../components/Day";
 
 const Home: NextPage = () => {
   return (

@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write **/*.{ts,tsx,json,md}"
+    "format": "prettier --write components pages lib"
   },
   "dependencies": {
     "@headlessui/react": "1.4.2",
