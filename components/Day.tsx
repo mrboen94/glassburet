@@ -6,9 +6,18 @@ import {
   MdAccessAlarm,
   MdCheck,
 } from "react-icons/md";
+import {
+  format,
+  formatDistance,
+  formatRelative,
+  getISODay,
+  isAfter,
+  isBefore,
+} from "date-fns";
+import { nb } from "date-fns/locale";
 
 const getToday = (): DayPlan => {
-  return DAY_PLAN[0];
+  return DAY_PLAN[getISODay(new Date())];
 };
 
 const getIcon = (activity: Activity): JSX.Element => {
@@ -26,6 +35,15 @@ const getIcon = (activity: Activity): JSX.Element => {
   }
 };
 
+const formatDate = (date: Date): string => {
+  if (isAfter(new Date(), date))
+    return formatRelative(date, new Date(), { locale: nb });
+  if (isBefore(new Date(), date))
+    return formatDistance(date, new Date(), { addSuffix: true, locale: nb });
+
+  return format(date, "HH:mm");
+};
+
 export const Day = (): JSX.Element => {
   const today = getToday();
 
@@ -33,7 +51,7 @@ export const Day = (): JSX.Element => {
     <div className="flow-root">
       <ul role="list" className="-mb-8">
         {today.activities.map((plan, planIdx) => (
-          <li key={plan.time.toString()}>
+          <li key={planIdx}>
             <div className="relative pb-8">
               {planIdx !== today.activities.length - 1 ? (
                 <span
@@ -43,7 +61,7 @@ export const Day = (): JSX.Element => {
               ) : null}
               <div className="relative flex items-start space-x-3">
                 <div className="relative">
-                  <span className="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
+                  <span className="h-10 w-10 rounded-full bg-blue-300 flex items-center justify-center ring-8 ring-white">
                     {getIcon(plan.activity)}
                   </span>
                 </div>
@@ -51,7 +69,7 @@ export const Day = (): JSX.Element => {
                   <div>
                     <div className="text-sm">{plan.name}</div>
                     <p className="mt-0.5 text-sm text-gray-500">
-                      {plan.time.toString()}
+                      {formatDate(plan.time)}
                     </p>
                   </div>
                   <div className="mt-2 text-sm text-gray-700">
