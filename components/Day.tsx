@@ -77,11 +77,11 @@ export const Day = (): JSX.Element => {
               <div className="relative flex items-start space-x-3">
                 <div className="relative">
                   {isAfter(plan.time, new Date()) ? (
-                    <span className="h-10 w-10 rounded-full bg-blue-300 flex items-center justify-center ring-8 ring-white">
+                    <span className="h-10 w-10 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center ring-8 ring-white">
                       {getIcon(plan.activity)}
                     </span>
                   ) : (
-                    <span className="h-10 w-10 rounded-full bg-green-300 flex items-center justify-center ring-8 ring-white">
+                    <span className="h-10 w-10 rounded-full bg-green-300 text-green-900 flex items-center justify-center ring-8 ring-white">
                       <MdOutlineCheckCircleOutline />
                     </span>
                   )}
