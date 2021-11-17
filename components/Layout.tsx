@@ -9,7 +9,7 @@ export const Layout = ({ children }: Props): JSX.Element => {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex">
+          <div className="flex m-auto pt-2">
             <div className="flex-shrink-0 flex items-center">
               <img
                 className="block lg:hidden h-14 w-auto"
