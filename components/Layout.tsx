@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import gb from "../public/gb.svg";
 
 interface Props {
   children: ReactNode;
@@ -13,13 +12,13 @@ export const Layout = ({ children }: Props): JSX.Element => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <img
-                className="block lg:hidden h-8 w-auto"
-                src={gb}
+                className="block lg:hidden h-14 w-auto"
+                src="/gb.svg"
                 alt="glassburet"
               />
               <img
-                className="hidden lg:block h-8 w-auto"
-                src={gb}
+                className="hidden lg:block h-14 w-auto"
+                src="/gb.svg"
                 alt="glassburet"
               />
             </div>
