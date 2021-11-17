@@ -16,8 +16,21 @@ import {
 } from "date-fns";
 import { nb } from "date-fns/locale";
 
+const clamp = (number: number): number => {
+  var min = 0;
+  var max = 7;
+  return Math.min(Math.max(number, min), max);
+};
+
 const getToday = (): DayPlan => {
-  return DAY_PLAN[getISODay(new Date())];
+  var localTime = new Date();
+  var day = getISODay(localTime);
+  var nextDay = new Date().setHours(20, 0, 0, 0);
+
+  if (isAfter(localTime, nextDay)) {
+    return DAY_PLAN[clamp((day + 1) % 7)];
+  }
+  return DAY_PLAN[day];
 };
 
 const getIcon = (activity: Activity): JSX.Element => {
