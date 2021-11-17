@@ -5,7 +5,9 @@ import {
   MdStars,
   MdAccessAlarm,
   MdCheck,
+  MdOutlineCheckCircleOutline,
 } from "react-icons/md";
+
 import {
   format,
   formatDistance,
@@ -74,9 +76,15 @@ export const Day = (): JSX.Element => {
               ) : null}
               <div className="relative flex items-start space-x-3">
                 <div className="relative">
-                  <span className="h-10 w-10 rounded-full bg-blue-300 flex items-center justify-center ring-8 ring-white">
-                    {getIcon(plan.activity)}
-                  </span>
+                  {isAfter(plan.time, new Date()) ? (
+                    <span className="h-10 w-10 rounded-full bg-blue-300 flex items-center justify-center ring-8 ring-white">
+                      {getIcon(plan.activity)}
+                    </span>
+                  ) : (
+                    <span className="h-10 w-10 rounded-full bg-green-300 flex items-center justify-center ring-8 ring-white">
+                      <MdOutlineCheckCircleOutline />
+                    </span>
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div>
