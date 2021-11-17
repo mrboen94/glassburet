@@ -6,7 +6,7 @@ interface Props {
 
 export const Layout = ({ children }: Props): JSX.Element => {
   return (
-    <div className="min-h-full">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
