@@ -85,7 +85,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -138,7 +138,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -191,7 +191,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -244,7 +244,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -297,7 +297,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -350,7 +350,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
@@ -403,7 +403,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(16, 0),
       },
       {
-        name: "Kaffeinfri kaffe",
+        name: "Koffeinfri kaffe",
         description: "På tide å komme seg opp for å lide nok en dag.",
         activity: "coffee",
         time: time(18, 0),
