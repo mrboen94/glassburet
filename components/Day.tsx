@@ -16,6 +16,7 @@ import {
   parseISO,
 } from "date-fns";
 import { nb } from "date-fns/locale";
+import { utcToZonedTime } from "date-fns-tz";
 
 const getIcon = (activity: Activity): JSX.Element => {
   switch (activity) {
@@ -33,7 +34,8 @@ const getIcon = (activity: Activity): JSX.Element => {
 };
 
 const formatDate = (date: string | Date): string => {
-  const converted = parseISO(date as string);
+  const converted = utcToZonedTime(parseISO(date as string), "Europe/Oslo");
+
   if (isAfter(new Date(), converted))
     return formatRelative(converted, new Date(), { locale: nb });
   if (isBefore(new Date(), converted))
@@ -50,7 +52,7 @@ interface Props {
 }
 
 const DayEntry = ({ entry }: { entry: Entry }): JSX.Element => {
-  const time = parseISO(entry.time as string);
+  const time = utcToZonedTime(parseISO(entry.time as string), "Europe/Oslo");
   const isEntryAfter = isAfter(time, new Date());
 
   return (
