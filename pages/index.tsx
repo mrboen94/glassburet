@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import useSWR from "swr";
 import { Day } from "../components/Day";
 
@@ -11,9 +12,14 @@ const Home: NextPage = () => {
   if (!data) return <div>Got no data :(</div>;
 
   return (
-    <main className="max-w-lg mx-auto">
-      <Day day={data} />
-    </main>
+    <>
+      <Head>
+        <title>Glassburet - hvem, hva, hvor</title>
+      </Head>
+      <main className="max-w-lg mx-auto">
+        <Day day={data} />
+      </main>
+    </>
   );
 };
 
