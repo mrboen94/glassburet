@@ -16,7 +16,7 @@ export interface Entry {
 
 const time = (hour: number, minute: number): Date => {
   const date = new Date();
-  date.setHours(hour, minute, 0, 0);
+  date.setUTCHours(hour - 1, minute, 0, 0);
 
   return date;
 };
