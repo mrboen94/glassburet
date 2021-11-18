@@ -96,19 +96,28 @@ export const Day = ({ day }: Props): JSX.Element => {
   return (
     <div className="flow-root">
       <ul role="list" className="-mb-8">
-        {day.activities.map((plan, planIdx) => (
-          <li key={planIdx}>
-            <div className="relative pb-8">
-              {planIdx !== day.activities.length - 1 ? (
-                <span
-                  className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-200"
-                  aria-hidden="true"
-                />
-              ) : null}
-              <DayEntry entry={plan} key={planIdx} />
-            </div>
-          </li>
-        ))}
+        {day.activities.map((plan, planIdx) => {
+          const nextEntry = day.activities[planIdx + 1];
+          return (
+            <li key={planIdx}>
+              <div className="relative pb-8">
+                {nextEntry &&
+                isAfter(parseISO(nextEntry.time as string), new Date()) ? (
+                  <span
+                    className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-400"
+                    aria-hidden="true"
+                  />
+                ) : planIdx !== day.activities.length - 1 ? (
+                  <span
+                    className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-200"
+                    aria-hidden="true"
+                  />
+                ) : null}
+                <DayEntry entry={plan} key={planIdx} />
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
