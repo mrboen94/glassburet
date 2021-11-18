@@ -1,2 +1,8 @@
+[context.production.environment]
+  TZ = "Europe/Oslo"
+
+[context.deploy-preview.environment]
+  TZ = "Europe/Oslo"
+
 [build.environment]
   TZ = "Europe/Oslo"

@@ -8,7 +8,6 @@ import {
   MdOutlineCheckCircleOutline,
 } from "react-icons/md";
 import {
-  format,
   formatDistance,
   formatRelative,
   isAfter,
@@ -16,7 +15,7 @@ import {
   parseISO,
 } from "date-fns";
 import { nb } from "date-fns/locale";
-import { utcToZonedTime } from "date-fns-tz";
+import { format, utcToZonedTime } from "date-fns-tz";
 
 const getIcon = (activity: Activity): JSX.Element => {
   switch (activity) {
@@ -44,7 +43,7 @@ const formatDate = (date: string | Date): string => {
       locale: nb,
     });
 
-  return format(converted, "HH:mm");
+  return format(converted, "HH:mm", { timeZone: "Europe/Oslo" });
 };
 
 interface Props {
