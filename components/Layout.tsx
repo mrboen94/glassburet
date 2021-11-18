@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 
 interface Props {
   children: ReactNode;
@@ -11,15 +12,14 @@ export const Layout = ({ children }: Props): JSX.Element => {
         <div className="flex justify-between h-16">
           <div className="flex m-auto pt-2">
             <div className="flex-shrink-0 flex items-center">
-              <img
-                className="block lg:hidden h-14 w-auto"
+              <Image
+                className="h-14 w-auto"
                 src="/gb.svg"
                 alt="glassburet"
-              />
-              <img
-                className="hidden lg:block h-14 w-auto"
-                src="/gb.svg"
-                alt="glassburet"
+                layout="intrinsic"
+                height={60}
+                width={60}
+                priority
               />
             </div>
           </div>
