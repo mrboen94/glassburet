@@ -11,7 +11,7 @@ export interface Entry {
   name: string;
   description: string;
   activity: Activity;
-  time: Date;
+  time: Date | string;
 }
 
 const time = (hour: number, minute: number): Date => {

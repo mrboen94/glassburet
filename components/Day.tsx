@@ -1,4 +1,4 @@
-import { Activity, getToday, } from "../lib/data";
+import { Activity, DayPlan } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -13,9 +13,9 @@ import {
   formatRelative,
   isAfter,
   isBefore,
+  parseISO,
 } from "date-fns";
 import { nb } from "date-fns/locale";
-
 
 const getIcon = (activity: Activity): JSX.Element => {
   switch (activity) {
@@ -32,25 +32,31 @@ const getIcon = (activity: Activity): JSX.Element => {
   }
 };
 
-const formatDate = (date: Date): string => {
-  if (isAfter(new Date(), date))
-    return formatRelative(date, new Date(), { locale: nb });
-  if (isBefore(new Date(), date))
-    return formatDistance(date, new Date(), { addSuffix: true, locale: nb });
+const formatDate = (date: string): string => {
+  const converted = parseISO(date);
+  if (isAfter(new Date(), converted))
+    return formatRelative(converted, new Date(), { locale: nb });
+  if (isBefore(new Date(), converted))
+    return formatDistance(converted, new Date(), {
+      addSuffix: true,
+      locale: nb,
+    });
 
-  return format(date, "HH:mm");
+  return format(converted, "HH:mm");
 };
 
-export const Day = (): JSX.Element => {
-  const today = getToday();
+interface Props {
+  day: DayPlan;
+}
 
+export const Day = ({ day }: Props): JSX.Element => {
   return (
     <div className="flow-root">
       <ul role="list" className="-mb-8">
-        {today.activities.map((plan, planIdx) => (
+        {day.activities.map((plan, planIdx) => (
           <li key={planIdx}>
             <div className="relative pb-8">
-              {planIdx !== today.activities.length - 1 ? (
+              {planIdx !== day.activities.length - 1 ? (
                 <span
                   className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-200"
                   aria-hidden="true"
@@ -58,7 +64,7 @@ export const Day = (): JSX.Element => {
               ) : null}
               <div className="relative flex items-start space-x-3">
                 <div className="relative">
-                  {isAfter(plan.time, new Date()) ? (
+                  {isAfter(parseISO(plan.time as string), new Date()) ? (
                     <span className="h-10 w-10 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center ring-8 ring-white">
                       {getIcon(plan.activity)}
                     </span>
@@ -72,7 +78,7 @@ export const Day = (): JSX.Element => {
                   <div>
                     <div className="text-sm">{plan.name}</div>
                     <p className="mt-0.5 text-sm text-gray-500">
-                      {formatDate(plan.time)}
+                      {formatDate(plan.time as string)}
                     </p>
                   </div>
                   <div className="mt-2 text-sm text-gray-700">
