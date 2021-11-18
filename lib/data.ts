@@ -1,4 +1,4 @@
-import { intervalToDuration } from "date-fns";
+import { getISODay, isAfter } from "date-fns";
 
 export interface DayPlan {
   name: string;
@@ -14,11 +14,6 @@ export interface Entry {
   time: Date;
 }
 
-interface Time {
-  hour: number;
-  minute: number;
-}
-
 const time = (hour: number, minute: number): Date => {
   const date = new Date();
   date.setHours(hour, minute, 0, 0);
@@ -26,14 +21,21 @@ const time = (hour: number, minute: number): Date => {
   return date;
 };
 
-const constructTime = (startTime: Time, endTime: Time): Duration => {
-  const start = new Date();
-  const end = new Date();
+const clamp = (number: number): number => {
+  var min = 0;
+  var max = 7;
+  return Math.min(Math.max(number, min), max);
+};
 
-  start.setHours(startTime.hour, startTime.minute);
-  end.setHours(endTime.hour, endTime.minute);
+export const getToday = (): DayPlan => {
+  var localTime = new Date();
+  var day = getISODay(localTime);
+  var nextDay = new Date().setHours(20, 0, 0, 0);
 
-  return intervalToDuration({ start, end });
+  if (isAfter(localTime, nextDay)) {
+    return DAY_PLAN[clamp((day + 1) % 7)];
+  }
+  return DAY_PLAN[day];
 };
 
 export const DAY_PLAN: Record<number, DayPlan> = {

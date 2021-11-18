@@ -1,4 +1,4 @@
-import { Activity, DayPlan, DAY_PLAN } from "../lib/data";
+import { Activity, getToday, } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -7,33 +7,15 @@ import {
   MdCheck,
   MdOutlineCheckCircleOutline,
 } from "react-icons/md";
-
 import {
   format,
   formatDistance,
   formatRelative,
-  getISODay,
   isAfter,
   isBefore,
 } from "date-fns";
 import { nb } from "date-fns/locale";
 
-const clamp = (number: number): number => {
-  var min = 0;
-  var max = 7;
-  return Math.min(Math.max(number, min), max);
-};
-
-const getToday = (): DayPlan => {
-  var localTime = new Date();
-  var day = getISODay(localTime);
-  var nextDay = new Date().setHours(20, 0, 0, 0);
-
-  if (isAfter(localTime, nextDay)) {
-    return DAY_PLAN[clamp((day + 1) % 7)];
-  }
-  return DAY_PLAN[day];
-};
 
 const getIcon = (activity: Activity): JSX.Element => {
   switch (activity) {
