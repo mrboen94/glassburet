@@ -1,4 +1,4 @@
-import { Activity, DayPlan } from "../lib/data";
+import { Activity, DayPlan, Entry } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -32,8 +32,8 @@ const getIcon = (activity: Activity): JSX.Element => {
   }
 };
 
-const formatDate = (date: string): string => {
-  const converted = parseISO(date);
+const formatDate = (date: string | Date): string => {
+  const converted = parseISO(date as string);
   if (isAfter(new Date(), converted))
     return formatRelative(converted, new Date(), { locale: nb });
   if (isBefore(new Date(), converted))
@@ -49,6 +49,50 @@ interface Props {
   day: DayPlan;
 }
 
+const DayEntry = ({ entry }: { entry: Entry }): JSX.Element => {
+  const time = parseISO(entry.time as string);
+  const isEntryAfter = isAfter(time, new Date());
+
+  return (
+    <div className="relative flex items-start space-x-3">
+      <div className="relative">
+        {isEntryAfter ? (
+          <span className="h-10 w-10 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center ring-8 ring-white">
+            {getIcon(entry.activity)}
+          </span>
+        ) : (
+          <span className="h-10 w-10 rounded-full bg-green-300 text-green-900 flex items-center justify-center ring-8 ring-white">
+            <MdOutlineCheckCircleOutline />
+          </span>
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div>
+          <div className={isEntryAfter ? "" : "text-gray-400 " + "text-sm"}>
+            {entry.name}
+          </div>
+          <p
+            className={
+              isEntryAfter
+                ? "text-gray-500 "
+                : "text-gray-400 " + "mt-0.5 text-sm"
+            }
+          >
+            {formatDate(entry.time)}
+          </p>
+        </div>
+        <div
+          className={
+            isEntryAfter ? "text-gray-700 " : "text-gray-400 " + "mt-2 text-sm"
+          }
+        >
+          <p>{entry.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Day = ({ day }: Props): JSX.Element => {
   return (
     <div className="flow-root">
@@ -62,30 +106,7 @@ export const Day = ({ day }: Props): JSX.Element => {
                   aria-hidden="true"
                 />
               ) : null}
-              <div className="relative flex items-start space-x-3">
-                <div className="relative">
-                  {isAfter(parseISO(plan.time as string), new Date()) ? (
-                    <span className="h-10 w-10 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center ring-8 ring-white">
-                      {getIcon(plan.activity)}
-                    </span>
-                  ) : (
-                    <span className="h-10 w-10 rounded-full bg-green-300 text-green-900 flex items-center justify-center ring-8 ring-white">
-                      <MdOutlineCheckCircleOutline />
-                    </span>
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div>
-                    <div className="text-sm">{plan.name}</div>
-                    <p className="mt-0.5 text-sm text-gray-500">
-                      {formatDate(plan.time as string)}
-                    </p>
-                  </div>
-                  <div className="mt-2 text-sm text-gray-700">
-                    <p>{plan.description}</p>
-                  </div>
-                </div>
-              </div>
+              <DayEntry entry={plan} key={planIdx} />
             </div>
           </li>
         ))}
