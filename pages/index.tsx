@@ -9,7 +9,6 @@ const Home: NextPage = () => {
   const { data, error } = useSWR("/api/day", fetcher);
 
   if (error) return <div>Something went wrong :(</div>;
-  if (!data) return <div>Got no data :(</div>;
 
   return (
     <>
@@ -17,7 +16,7 @@ const Home: NextPage = () => {
         <title>Glassburet - hvem, hva, hvor</title>
       </Head>
       <main className="max-w-lg mx-auto">
-        <Day day={data} />
+        {!data ? <p>Loading...</p> : <Day day={data} />}
       </main>
     </>
   );
