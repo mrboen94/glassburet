@@ -33,7 +33,10 @@ const getIcon = (activity: Activity): JSX.Element => {
 };
 
 const formatDate = (date: string | Date): string => {
-  const converted = utcToZonedTime(parseISO(date as string), "Europe/Oslo");
+  let converted;
+  if (date instanceof String)
+    converted = utcToZonedTime(parseISO(date as string), "Europe/Oslo");
+  else converted = date as Date;
 
   if (isAfter(new Date(), converted))
     return formatRelative(converted, new Date(), { locale: nb });
@@ -79,7 +82,7 @@ const DayEntry = ({ entry }: { entry: Entry }): JSX.Element => {
                 : "text-gray-400 " + "mt-0.5 text-sm"
             }
           >
-            {formatDate(entry.time)}
+            {formatDate(time)}
           </p>
         </div>
         <div
