@@ -17,7 +17,7 @@ class MyDocument extends Document {
     return (
       <Html lang="no" className="h-full">
         <Head>
-          <link rel="canonical" href="https://fuck.you.mathias" />
+          <link rel="canonical" href="https://glassburet.netlify.app/" />
           <meta name="description" content="When to we do this?" />
           <meta property="og:description" content="When to we do this?" />
         </Head>
