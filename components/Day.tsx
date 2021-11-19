@@ -44,6 +44,13 @@ const formatDate = (date: Date): string => {
   return format(date, "HH:mm");
 };
 
+const isBetween = (start: Date | string, end: Date | string): boolean => {
+  return (
+    isAfter(parseISO(start as string), new Date()) &&
+    isBefore(parseISO(end as string), new Date())
+  );
+};
+
 interface Props {
   day: DayPlan;
 }
@@ -101,8 +108,13 @@ export const Day = ({ day }: Props): JSX.Element => {
           return (
             <li key={planIdx}>
               <div className="relative pb-8">
-                {nextEntry &&
-                isAfter(parseISO(nextEntry.time as string), new Date()) ? (
+                {nextEntry && isBetween(nextEntry.time, plan.time) ? (
+                  <span
+                    className="absolute top-5 left-5 -ml-px h-full bg-gray-400 animate-pulse w-1"
+                    aria-hidden="true"
+                  />
+                ) : nextEntry &&
+                  isAfter(parseISO(nextEntry.time as string), new Date()) ? (
                   <span
                     className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-400"
                     aria-hidden="true"
