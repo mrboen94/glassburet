@@ -7,11 +7,14 @@ export interface DayPlan {
 
 export type Activity = "coffee" | "food" | "training" | "wake-up" | "day-over";
 
-export interface Entry {
+export interface PlainEntry {
   name: string;
   description: string;
   activity: Activity;
-  time: Date | string;
+}
+
+export interface Entry extends PlainEntry {
+  time: Date;
 }
 
 const time = (hour: number, minute: number): Date => {
