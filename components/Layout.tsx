@@ -26,11 +26,9 @@ export const Layout = ({ children }: Props): JSX.Element => {
         </div>
       </div>
 
-      <div className="py-10">
-        <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">{children}</div>
-        </main>
-      </div>
+      <main>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">{children}</div>
+      </main>
     </div>
   );
 };
