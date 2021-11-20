@@ -15,7 +15,7 @@ export const EventList = ({ events }: Props): JSX.Element => {
   return (
     <ul role="list" className="-mb-8">
       {events.map((plan, planIdx) => {
-        const nextEntry = events.at(planIdx + 1);
+        const nextEntry = events[planIdx + 1];
         return (
           <li key={planIdx}>
             <div className="relative pb-8">
