@@ -1,6 +1,7 @@
 import { DayEntry } from "./Entry";
 import { ApiEntry } from "./Day";
 import { isAfter, isBefore, parseISO } from "date-fns";
+import VerticalBar from "./VerticalBar";
 
 interface Props {
   events: Array<ApiEntry>;
@@ -9,6 +10,20 @@ const isBetween = (start: string, end: string): boolean => {
   return (
     isAfter(parseISO(start), new Date()) && isBefore(parseISO(end), new Date())
   );
+};
+
+const currentProgress = (
+  start: string,
+  nextEvent: string,
+  current: Date
+): number => {
+  console.log(current.getTime());
+  console.log(parseISO(start).getTime());
+  var nextEventTime = parseISO(nextEvent).getTime();
+  var startTime = parseISO(start).getTime() - nextEventTime;
+  var currentTime = current.getTime() - nextEventTime;
+  var fraction = currentTime / startTime;
+  return fraction * 100;
 };
 
 export const EventList = ({ events }: Props): JSX.Element => {
@@ -20,10 +35,15 @@ export const EventList = ({ events }: Props): JSX.Element => {
           <li key={planIdx}>
             <div className="relative pb-8">
               {nextEntry && isBetween(plan.time, nextEntry.time) ? (
-                <span
-                  className="absolute top-5 left-5 -ml-px h-full bg-gray-400 animate-pulse w-1"
-                  aria-hidden="true"
-                />
+                <span aria-hidden="true">
+                  <VerticalBar
+                    progress={currentProgress(
+                      plan.time,
+                      nextEntry.time,
+                      new Date()
+                    )}
+                  />
+                </span>
               ) : nextEntry && isAfter(parseISO(nextEntry.time), new Date()) ? (
                 <span
                   className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-400"
