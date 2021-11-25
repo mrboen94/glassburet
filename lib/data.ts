@@ -5,7 +5,13 @@ export interface DayPlan {
   activities: Array<Entry>;
 }
 
-export type Activity = "coffee" | "food" | "training" | "wake-up" | "day-over";
+export type Activity =
+  | "coffee"
+  | "food"
+  | "waffle"
+  | "training"
+  | "wake-up"
+  | "day-over";
 
 export interface PlainEntry {
   name: string;
@@ -235,9 +241,9 @@ export const DAY_PLAN: Record<number, DayPlan> = {
         time: time(13, 0),
       },
       {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
+        name: "Vaffel",
+        description: "På tide å kaste i seg deg ukentlige vaffelen.",
+        activity: "waffle",
         time: time(14, 0),
       },
       {
