@@ -51,7 +51,7 @@ export const EventList = ({ events }: Props): JSX.Element => {
                 />
               ) : planIdx !== events.length - 1 ? (
                 <span
-                  className="absolute top-5 left-5 -ml-px h-full w-1 bg-gray-200"
+                  className="absolute top-5 left-5 -ml-px h-full w-1 bg-green-200"
                   aria-hidden="true"
                 />
               ) : null}
