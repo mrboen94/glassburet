@@ -17,8 +17,6 @@ const currentProgress = (
   nextEvent: string,
   current: Date
 ): number => {
-  console.log(current.getTime());
-  console.log(parseISO(start).getTime());
   var nextEventTime = parseISO(nextEvent).getTime();
   var startTime = parseISO(start).getTime() - nextEventTime;
   var currentTime = current.getTime() - nextEventTime;
