@@ -15,11 +15,21 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="no" className="h-full">
+      <Html
+        lang="no"
+        className="h-full scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-blue-300 overflow-y-scroll hover:scrollbar-thumb-green-400"
+      >
         <Head>
           <link rel="canonical" href="https://glassburet.netlify.app/" />
-          <meta name="description" content="When to we do this?" />
-          <meta property="og:description" content="When to we do this?" />
+          <link rel="icon" href="/gb.svg" />
+          <meta
+            name="description"
+            content="Scheduling is hard, so we made it easy, but horrible at the same time!"
+          />
+          <meta
+            property="og:description"
+            content="Scheduling is hard, so we made it easy, but horrible at the same time!"
+          />
         </Head>
         <body className="h-full">
           <Layout>

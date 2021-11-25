@@ -1,4 +1,4 @@
-import { MdExpandMore, MdExpandLess } from "react-icons/md";
+import { MdExpandLess } from "react-icons/md";
 
 interface Props {
   show: boolean;
@@ -14,19 +14,14 @@ export const ShowMore = ({ show, setShow }: Props): JSX.Element => (
       <button
         onClick={() => setShow(!show)}
         type="button"
-        className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400"
       >
-        {show ? (
-          <MdExpandLess
-            className="-ml-1.5 mr-1 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-        ) : (
-          <MdExpandMore
-            className="-ml-1.5 mr-1 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-        )}
+        <MdExpandLess
+          className={`-ml-1.5 mr-1 h-5 w-5 text-gray-400 ${
+            show ? "rotate-180" : ""
+          } transform duration-200`}
+          aria-hidden="true"
+        />
         <span>Previously...</span>
       </button>
     </div>

@@ -27,7 +27,9 @@ export const Layout = ({ children }: Props): JSX.Element => {
       </div>
 
       <main>
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">{children}</div>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 w-full">
+          {children}
+        </div>
       </main>
     </div>
   );

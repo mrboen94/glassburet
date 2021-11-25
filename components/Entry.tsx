@@ -7,6 +7,7 @@ import {
   MdCheck,
   MdOutlineCheckCircleOutline,
 } from "react-icons/md";
+import { IoMdHeart } from "react-icons/io";
 import {
   formatDistance,
   formatRelative,
@@ -27,6 +28,8 @@ const getIcon = (activity: Activity): JSX.Element => {
       return <MdStars />;
     case "wake-up":
       return <MdAccessAlarm />;
+    case "waffle":
+      return <IoMdHeart />;
     case "day-over":
       return <MdCheck />;
   }
