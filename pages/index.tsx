@@ -15,6 +15,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Glassburet - hvem, hva, hvor</title>
+        <link rel="icon" href="/gb.svg" />
       </Head>
       <main className="max-w-lg mx-auto">
         {!data ? (

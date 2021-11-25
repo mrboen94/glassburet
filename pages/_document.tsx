@@ -21,6 +21,7 @@ class MyDocument extends Document {
       >
         <Head>
           <link rel="canonical" href="https://glassburet.netlify.app/" />
+          <link rel="icon" href="/gb.svg" />
           <meta
             name="description"
             content="Scheduling is hard, so we made it easy, but horrible at the same time!"
