@@ -21,8 +21,14 @@ class MyDocument extends Document {
       >
         <Head>
           <link rel="canonical" href="https://glassburet.netlify.app/" />
-          <meta name="description" content="When to we do this?" />
-          <meta property="og:description" content="When to we do this?" />
+          <meta
+            name="description"
+            content="Scheduling is hard, so we made it easy, but horrible at the same time!"
+          />
+          <meta
+            property="og:description"
+            content="Scheduling is hard, so we made it easy, but horrible at the same time!"
+          />
         </Head>
         <body className="h-full">
           <Layout>
