@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Image from "next/image";
+import NavBar from "./NavBar";
 
 interface Props {
   children: ReactNode;
@@ -9,13 +10,14 @@ export const Layout = ({ children }: Props): JSX.Element => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <NavBar />
         <div className="flex justify-between h-16">
           <div className="flex m-auto pt-2">
             <div className="flex-shrink-0 flex items-center">
               <Image
                 className="h-14 w-auto"
                 src="/gb.svg"
-                alt="glassburet"
+                alt="gb"
                 layout="intrinsic"
                 height={60}
                 width={60}
