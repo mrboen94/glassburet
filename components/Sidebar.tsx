@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useRouter } from "next/router";
 import {
   CalendarIcon,
   HomeIcon,
@@ -10,10 +11,11 @@ import {
   MusicNoteIcon,
 } from "@heroicons/react/outline";
 import Image from "next/image";
+import Link from "next/link";
 
 const navigation = [
   { name: "Oversikt", href: "/", icon: HomeIcon, current: true },
-  { name: "Regler", href: "#", icon: InboxIcon, current: false },
+  { name: "Regler", href: "/rules", icon: InboxIcon, current: false },
   { name: "Anmerkninger", href: "#", icon: CalendarIcon, current: false },
   { name: "Unrated", href: "#", icon: MusicNoteIcon, current: false },
 ];
@@ -23,6 +25,8 @@ function classNames(...classes: any) {
 }
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
+
   return (
     <div>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -86,27 +90,28 @@ export default function Sidebar() {
                 </div>
                 <nav className="mt-5 px-2 space-y-1">
                   {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-                        "group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                      )}
-                    >
-                      <item.icon
+                    <Link href={item.href}>
+                      <a
+                        key={item.name}
                         className={classNames(
-                          item.current
-                            ? "text-gray-500"
-                            : "text-gray-400 group-hover:text-gray-500",
-                          "mr-4 flex-shrink-0 h-6 w-6"
+                          router.pathname === item.href
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
-                        aria-hidden="true"
-                      />
-                      {item.name}
-                    </a>
+                      >
+                        <item.icon
+                          className={classNames(
+                            router.pathname === item.href
+                              ? "text-gray-500"
+                              : "text-gray-400 group-hover:text-gray-500",
+                            "mr-4 flex-shrink-0 h-6 w-6"
+                          )}
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
                 </nav>
               </div>
@@ -136,27 +141,28 @@ export default function Sidebar() {
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-                    "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                  )}
-                >
-                  <item.icon
+                <Link href={item.href}>
+                  <a
+                    key={item.name}
                     className={classNames(
-                      item.current
-                        ? "text-gray-500"
-                        : "text-gray-400 group-hover:text-gray-500",
-                      "mr-3 flex-shrink-0 h-6 w-6"
+                      router.pathname === item.href
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </a>
+                  >
+                    <item.icon
+                      className={classNames(
+                        router.pathname === item.href
+                          ? "text-gray-500"
+                          : "text-gray-400 group-hover:text-gray-500",
+                        "mr-3 flex-shrink-0 h-6 w-6"
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                </Link>
               ))}
             </nav>
           </div>
