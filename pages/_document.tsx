@@ -5,7 +5,6 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { Layout } from "../components/Layout";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -32,9 +31,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body className="h-full">
-          <Layout>
-            <Main />
-          </Layout>
+          <Main />
           <NextScript />
         </body>
       </Html>
