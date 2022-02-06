@@ -90,9 +90,8 @@ export default function Sidebar() {
                 </div>
                 <nav className="mt-5 px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link href={item.href}>
+                    <Link href={item.href} key={item.name}>
                       <a
-                        key={item.name}
                         className={classNames(
                           router.pathname === item.href
                             ? "bg-gray-100 text-gray-900"
@@ -141,9 +140,8 @@ export default function Sidebar() {
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
               {navigation.map((item) => (
-                <Link href={item.href}>
+                <Link href={item.href} key={item.name}>
                   <a
-                    key={item.name}
                     className={classNames(
                       router.pathname === item.href
                         ? "bg-gray-100 text-gray-900"

@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <title>Glassburet - hvem, hva, hvor</title>
         <link rel="icon" href="/gb.svg" />
       </Head>
-      <main className="max-w-lg mx-auto">
+      <main className="w-full mx-auto">
         {!data ? (
           <div className="mx-0 mt-4 flex place-content-center">
             <Loader type="Bars" color="#00BFFF" height={80} width={80} />
