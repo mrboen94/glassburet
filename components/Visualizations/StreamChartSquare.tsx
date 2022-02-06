@@ -12,6 +12,7 @@ export default function StreamChartSquare({
   const [dataLink, _] = useState(`/unrated/${dataUrl}.json`);
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [totalScore, setTotalScore] = useState(100);
   var score = 0;
   var totalPoints = 0;
 
@@ -25,6 +26,10 @@ export default function StreamChartSquare({
           setLoading(false);
         });
   }, [dataLink]);
+
+  function handleClick() {
+    setTotalScore(totalScore === 100 ? 6 : 100);
+  }
 
   return !loading && data ? (
     <div className="w-full h-full transition-all">
@@ -62,7 +67,7 @@ export default function StreamChartSquare({
             id: "dots",
           }))}
       />
-      <p className="">
+      <p onClick={handleClick}>
         {data.map((person: Array<number>) => {
           Object.values(person).map((points) => {
             score = score + points;
@@ -70,7 +75,9 @@ export default function StreamChartSquare({
             console.log(points);
           });
         })}{" "}
-        {`${Math.round(((score - 1) / (totalPoints - 100)) * 100)} / 100`}
+        {`${Math.round(
+          ((score - 1) / (totalPoints - 100)) * totalScore
+        )} / ${totalScore}`}
       </p>
     </div>
   ) : (
