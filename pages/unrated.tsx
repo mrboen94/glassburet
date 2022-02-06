@@ -40,49 +40,52 @@ const StreamChartSquareNoSSR = dynamic(
 export default function Unrated() {
   const [peopleData, setPeopleData] = useState<typeof people>(people);
   return (
-    <ul
-      role="list"
-      className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-    >
-      <div>
-        <CheckBoxList people={peopleData} onChange={setPeopleData} />
-      </div>
-      {unrated.map((album) => (
-        <li
-          key={album.title}
-          className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
-        >
-          <div className="flex">
-            <div className="flex-1 flex flex-col p-8">
-              <Link href={`unrated/${album.url}`} passHref>
-                <div>
-                  <img
-                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin"
-                    src={album.imageUrl}
-                    alt=""
-                  />
-                  <h3 className="mt-6 text-gray-900 text-sm font-medium">
-                    {album.name}
-                  </h3>
-                  <dl className="mt-1 flex-grow flex flex-col justify-between">
-                    <dt className="sr-only">Title</dt>
-                    <dd className="text-gray-500 text-sm">{album.title}</dd>
-                    <dt className="sr-only">Artist</dt>
-                    <dd className="mt-3">
-                      <span className="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-                        {album.role}
-                      </span>
-                    </dd>
-                  </dl>
-                </div>
-              </Link>
+    <>
+      <CheckBoxList people={peopleData} onChange={setPeopleData} />
+      <ul
+        role="list"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {unrated.map((album) => (
+          <li
+            key={album.title}
+            className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
+          >
+            <div className="flex flex-col">
+              <div className="flex-1 flex flex-col p-8 pb-4">
+                <Link href={`unrated/${album.url}`} passHref>
+                  <div>
+                    <img
+                      className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin"
+                      src={album.imageUrl}
+                      alt=""
+                    />
+                    <h3 className="mt-6 text-gray-900 text-sm font-medium">
+                      {album.name}
+                    </h3>
+                    <dl className="mt-1 flex-grow flex flex-col justify-between">
+                      <dt className="sr-only">Title</dt>
+                      <dd className="text-gray-500 text-sm">{album.title}</dd>
+                      <dt className="sr-only">Artist</dt>
+                      <dd className="mt-3">
+                        <span className="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                          {album.role}
+                        </span>
+                      </dd>
+                    </dl>
+                  </div>
+                </Link>
+              </div>
+              <div className="md:w-24 h-24 m-10 mt-0 md:mx-auto content-center">
+                <StreamChartSquareNoSSR
+                  dataUrl={album.url}
+                  people={peopleData}
+                />
+              </div>
             </div>
-            <div className="w-24 h-24 m-10">
-              <StreamChartSquareNoSSR dataUrl={album.url} people={peopleData} />
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
