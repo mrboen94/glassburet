@@ -6,7 +6,6 @@ export default function StreamChart() {
   const router = useRouter();
   const [slug, setSlug] = useState(null);
   const [data, setData] = useState(null);
-  const [cleanData, setCleanData] = useState(null);
   const [keys, setKeys] = useState(null);
   const [loading, setLoading] = useState(true);
 
