@@ -1,7 +1,7 @@
 import { PlainEntry } from "../lib/data";
 import { ShowMore } from "./ShowMore";
 import { EventList } from "./EventList";
-import { isAfter, isBefore, parseISO } from "date-fns";
+import { getISODay, isAfter, isBefore, parseISO } from "date-fns";
 import { useState } from "react";
 import { Time } from "./Time";
 
@@ -12,12 +12,19 @@ export interface ApiEntry extends PlainEntry {
 interface Props {
   day: {
     name: string;
+    id: number;
     activities: Array<ApiEntry>;
+    time: Date;
   };
 }
 
 export const Day = ({ day }: Props): JSX.Element => {
   const [show, setShow] = useState(false);
+
+  var localTime = new Date();
+  var ISODay = getISODay(localTime);
+  var today = ISODay === day.id;
+
   let after = day.activities.filter((it) =>
     isBefore(parseISO(it.time), new Date())
   );
@@ -42,7 +49,7 @@ export const Day = ({ day }: Props): JSX.Element => {
       </div>
       <div className="flow-root">
         <EventList events={before} />
-        <ShowMore show={show} setShow={setShow} />
+        {today ? <ShowMore show={show} setShow={setShow} /> : null}
         {show && <EventList events={after} />}
       </div>
     </>

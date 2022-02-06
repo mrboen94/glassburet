@@ -2,6 +2,7 @@ import { getISODay, isAfter } from "date-fns";
 
 export interface DayPlan {
   name: string;
+  id: number;
   activities: Array<Entry>;
 }
 
@@ -31,17 +32,22 @@ const time = (hour: number, minute: number): Date => {
 };
 
 const clamp = (number: number): number => {
-  var min = 0;
+  var min = 1;
   var max = 7;
-  return Math.min(Math.max(number, min), max);
+  return Math.max(Math.min(number, min), max);
 };
 
 export const getToday = (): DayPlan => {
   var localTime = new Date();
   var day = getISODay(localTime);
   var nextDay = new Date().setHours(20, 0, 0, 0);
+  var nextDayPlan = Object.assign(DAY_PLAN);
 
+  // TODO: Fix this as it runs every single time state changes anywhere!
   if (isAfter(localTime, nextDay)) {
+    nextDayPlan[clamp((day + 1) % 7)].activities.map((e: Entry) => {
+      e.time.setDate(localTime.getDate() + 1);
+    });
     return DAY_PLAN[clamp((day + 1) % 7)];
   }
   return DAY_PLAN[day];
@@ -49,6 +55,7 @@ export const getToday = (): DayPlan => {
 
 export const DAY_PLAN: Record<number, DayPlan> = {
   1: {
+    id: 1,
     name: "Mandag",
     activities: [
       {
@@ -102,6 +109,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   2: {
+    id: 2,
     name: "Tirsdag",
     activities: [
       {
@@ -155,6 +163,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   3: {
+    id: 3,
     name: "Onsdag",
     activities: [
       {
@@ -208,6 +217,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   4: {
+    id: 4,
     name: "Torsdag",
     activities: [
       {
@@ -261,6 +271,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   5: {
+    id: 5,
     name: "Fredag",
     activities: [
       {
@@ -314,6 +325,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   6: {
+    id: 6,
     name: "Lørdag",
     activities: [
       {
@@ -367,6 +379,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
     ],
   },
   7: {
+    id: 7,
     name: "Søndag",
     activities: [
       {
@@ -413,7 +426,7 @@ export const DAY_PLAN: Record<number, DayPlan> = {
       },
       {
         name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
+        description: "Slutten på ei lang veke",
         activity: "coffee",
         time: time(18, 0),
       },

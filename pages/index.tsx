@@ -3,7 +3,6 @@ import Head from "next/head";
 import Loader from "react-loader-spinner";
 import useSWR from "swr";
 import { Day } from "../components/Day";
-import Sidebar from "../components/Sidebar";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
