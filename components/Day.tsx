@@ -1,36 +1,15 @@
-import { PlainEntry } from "../lib/data";
 import { ShowMore } from "./ShowMore";
 import { EventList } from "./EventList";
-import { getISODay, isAfter, isBefore, parseISO } from "date-fns";
+import { isAfter, isBefore } from "date-fns";
 import { useState } from "react";
 import { Time } from "./Time";
+import { ApiDayPlan } from "../lib/data";
 
-export interface ApiEntry extends PlainEntry {
-  time: string;
-}
-
-interface Props {
-  day: {
-    name: string;
-    id: number;
-    activities: Array<ApiEntry>;
-    time: Date;
-  };
-}
-
-export const Day = ({ day }: Props): JSX.Element => {
+export const Day = ({ day }: { day: ApiDayPlan }): JSX.Element => {
   const [show, setShow] = useState(false);
 
-  var localTime = new Date();
-  var ISODay = getISODay(localTime);
-  var today = ISODay === day.id;
-
-  let after = day.activities.filter((it) =>
-    isBefore(parseISO(it.time), new Date())
-  );
-  const before = day.activities.filter((it) =>
-    isAfter(parseISO(it.time), new Date())
-  );
+  let after = day.activities.filter((it) => isBefore(it.time, new Date()));
+  const before = day.activities.filter((it) => isAfter(it.time, new Date()));
 
   if (after.length > 0) {
     before.push(after[0]);
@@ -49,7 +28,7 @@ export const Day = ({ day }: Props): JSX.Element => {
       </div>
       <div className="flow-root">
         <EventList events={before} />
-        {today ? <ShowMore show={show} setShow={setShow} /> : null}
+        <ShowMore show={show} setShow={setShow} />
         {show && <EventList events={after} />}
       </div>
     </>

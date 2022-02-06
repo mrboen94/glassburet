@@ -1,4 +1,4 @@
-import { Activity, PlainEntry } from "../lib/data";
+import { Activity, ApiEntry } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -13,7 +13,6 @@ import {
   formatRelative,
   isAfter,
   isBefore,
-  parseISO,
   format,
 } from "date-fns";
 import { nb } from "date-fns/locale";
@@ -35,7 +34,7 @@ const getIcon = (activity: Activity): JSX.Element => {
   }
 };
 
-const formatDate = (date: Date): string => {
+const formatDate = (date: number): string => {
   if (isAfter(new Date(), date))
     return formatRelative(date, new Date(), { locale: nb });
   if (isBefore(new Date(), date))
@@ -47,13 +46,8 @@ const formatDate = (date: Date): string => {
   return format(date, "HH:mm");
 };
 
-interface ApiEntry extends PlainEntry {
-  time: string;
-}
-
 export const DayEntry = ({ entry }: { entry: ApiEntry }): JSX.Element => {
-  const time = parseISO(entry.time as string);
-  const isEntryAfter = isAfter(time, new Date());
+  const isEntryAfter = isAfter(entry.time, new Date());
 
   return (
     <div className="relative flex items-start space-x-3">
@@ -80,7 +74,7 @@ export const DayEntry = ({ entry }: { entry: ApiEntry }): JSX.Element => {
                 : "text-gray-400 " + "mt-0.5 text-sm"
             }
           >
-            {formatDate(time)}
+            {formatDate(entry.time)}
           </p>
         </div>
         <div

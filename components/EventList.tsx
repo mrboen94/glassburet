@@ -1,26 +1,25 @@
 import { DayEntry } from "./Entry";
-import { ApiEntry } from "./Day";
-import { isAfter, isBefore, parseISO } from "date-fns";
+import { fromUnixTime, isAfter, isBefore } from "date-fns";
 import VerticalBar from "./VerticalBar";
+import { ApiEntry } from "../lib/data";
 
 interface Props {
   events: Array<ApiEntry>;
 }
-const isBetween = (start: string, end: string): boolean => {
-  return (
-    isAfter(parseISO(start), new Date()) && isBefore(parseISO(end), new Date())
-  );
+
+const isBetween = (start: number, end: number): boolean => {
+  return isAfter(start, new Date()) && isBefore(end, new Date());
 };
 
 const currentProgress = (
-  start: string,
-  nextEvent: string,
+  start: number,
+  nextEvent: number,
   current: Date
 ): number => {
-  var nextEventTime = parseISO(nextEvent).getTime();
-  var startTime = parseISO(start).getTime() - nextEventTime;
-  var currentTime = current.getTime() - nextEventTime;
-  var fraction = currentTime / startTime;
+  const nextEventTime = fromUnixTime(nextEvent).getTime();
+  const startTime = fromUnixTime(start).getTime() - nextEventTime;
+  const currentTime = current.getTime() - nextEventTime;
+  const fraction = currentTime / startTime;
   return fraction * 100;
 };
 
@@ -42,7 +41,7 @@ export const EventList = ({ events }: Props): JSX.Element => {
                     )}
                   />
                 </span>
-              ) : nextEntry && isAfter(parseISO(nextEntry.time), new Date()) ? (
+              ) : nextEntry && isAfter(nextEntry.time, new Date()) ? (
                 <span
                   className="absolute top-5 left-5 -ml-px h-full w-1 bg-blue-200"
                   aria-hidden="true"
