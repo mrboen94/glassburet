@@ -2,8 +2,12 @@ import { getISODay, isAfter } from "date-fns";
 
 export interface DayPlan {
   name: string;
-  id: number;
   activities: Array<Entry>;
+}
+
+export interface ApiDayPlan {
+  name: string;
+  activities: Array<ApiEntry>;
 }
 
 export type Activity =
@@ -21,415 +25,207 @@ export interface PlainEntry {
 }
 
 export interface Entry extends PlainEntry {
-  time: Date;
+  time: {
+    hour: number;
+    minute: number;
+  };
 }
 
-const time = (hour: number, minute: number): Date => {
-  const date = new Date();
-  date.setUTCHours(hour - 1, minute, 0, 0);
+export interface ApiEntry extends PlainEntry {
+  time: number;
+}
 
-  return date;
-};
+export const showNextDay = (): boolean => {
+  const localTime = new Date();
+  const nextDay = new Date().setHours(20, 0, 0, 0);
 
-const clamp = (number: number): number => {
-  var min = 1;
-  var max = 7;
-  return Math.max(Math.min(number, min), max);
+  return isAfter(localTime, nextDay);
 };
 
 export const getToday = (): DayPlan => {
-  var localTime = new Date();
-  var day = getISODay(localTime);
-  var nextDay = new Date().setHours(20, 0, 0, 0);
-  var nextDayPlan = Object.assign(DAY_PLAN);
+  const localTime = new Date();
+  const day = getISODay(localTime);
 
-  // TODO: Fix this as it runs every single time state changes anywhere!
-  if (isAfter(localTime, nextDay)) {
-    nextDayPlan[clamp((day + 1) % 7)].activities.map((e: Entry) => {
-      e.time.setDate(localTime.getDate() + 1);
-    });
-    return DAY_PLAN[clamp((day + 1) % 7)];
-  }
   return DAY_PLAN[day];
 };
 
+export const getTomorrow = (): DayPlan => {
+  const localTime = new Date();
+  const day = getISODay(localTime);
+
+  return DAY_PLAN[(day + 1) % 7];
+};
+
+const TRAINING_DAY_ACTIVITIES: Array<Entry> = [
+  {
+    name: "Stå opp",
+    description: "På tide å komme seg opp for å lide nok en dag.",
+    activity: "wake-up",
+    time: { hour: 6, minute: 0 },
+  },
+  {
+    name: "Trening",
+    description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
+    activity: "training",
+    time: { hour: 7, minute: 15 },
+  },
+  {
+    name: "Lunsj",
+    description: "På tide med næring for slappe studenter.",
+    activity: "food",
+    time: { hour: 8, minute: 30 },
+  },
+  {
+    name: "Kaffe",
+    description: "Viktig med påfyll med avhengighetsskapende midler.",
+    activity: "coffee",
+    time: { hour: 10, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Mat? MAT",
+    activity: "food",
+    time: { hour: 13, minute: 0 },
+  },
+  {
+    name: "Kaffe",
+    description: "Skal vi bare late som om dette hjelper deg?",
+    activity: "coffee",
+    time: { hour: 14, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Lunsj igjen, nå kan vi snakke om hvor lite vi har gjort.",
+    activity: "food",
+    time: { hour: 16, minute: 0 },
+  },
+  {
+    name: "Koffeinfri kaffe",
+    description: "Er det aldri for sent med kaffe?",
+    activity: "coffee",
+    time: { hour: 18, minute: 0 },
+  },
+];
+
+const LAZY_DAY_ACTIVITIES: Array<Entry> = [
+  {
+    name: "Stå opp",
+    description: "På tide å komme seg opp for å lide nok en dag.",
+    activity: "wake-up",
+    time: { hour: 6, minute: 30 },
+  },
+  {
+    name: "Lunsj",
+    description: "Viktig å starte dagen med frokost alt for tidlig.",
+    activity: "food",
+    time: { hour: 7, minute: 30 },
+  },
+  {
+    name: "Kaffe",
+    description: "Du trenger noe som gjør at du kan late som om du gjør noe.",
+    activity: "coffee",
+    time: { hour: 10, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Mat igjen, fordi det trenger du...",
+    activity: "food",
+    time: { hour: 13, minute: 0 },
+  },
+  {
+    name: "Kaffe",
+    description: "Sa noen mer kaffe?",
+    activity: "coffee",
+    time: { hour: 14, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Om dette er middagen er det ganske trist.",
+    activity: "food",
+    time: { hour: 16, minute: 0 },
+  },
+  {
+    name: "Koffeinfri kaffe",
+    description: "Viktig å avslutte dagen med lavmål.",
+    activity: "coffee",
+    time: { hour: 18, minute: 0 },
+  },
+];
+
+const WEEKEND_ACTIVITIES: Array<Entry> = [
+  {
+    name: "Stå opp",
+    description: "Hvorfor stå opp tidlig i en helg?",
+    activity: "wake-up",
+    time: { hour: 9, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Lunsj klokka 10, på skolen, i en helg?!?",
+    activity: "food",
+    time: { hour: 10, minute: 30 },
+  },
+  {
+    name: "Kaffe",
+    description: "Fordi du ikke får gjort noe i ukedagen?",
+    activity: "coffee",
+    time: { hour: 12, minute: 0 },
+  },
+  {
+    name: "Lunsj",
+    description: "Har du ikke noe bedre å gjøre i ei helg?",
+    activity: "food",
+    time: { hour: 14, minute: 0 },
+  },
+  {
+    name: "Kaffe",
+    description: "Påfyll av nektar fra gudene.",
+    activity: "coffee",
+    time: { hour: 16, minute: 0 },
+  },
+  {
+    name: "Koffeinfri kaffe",
+    description: "Altså, kom deg hjem.",
+    activity: "coffee",
+    time: { hour: 18, minute: 0 },
+  },
+];
+
 export const DAY_PLAN: Record<number, DayPlan> = {
   1: {
-    id: 1,
     name: "Mandag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...TRAINING_DAY_ACTIVITIES],
   },
   2: {
-    id: 2,
     name: "Tirsdag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...LAZY_DAY_ACTIVITIES],
   },
   3: {
-    id: 3,
     name: "Onsdag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...TRAINING_DAY_ACTIVITIES],
   },
   4: {
-    id: 4,
     name: "Torsdag",
     activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
+      ...LAZY_DAY_ACTIVITIES,
       {
         name: "Vaffel",
         description: "På tide å kaste i seg deg ukentlige vaffelen.",
         activity: "waffle",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
+        time: { hour: 14, minute: 0 },
       },
     ],
   },
   5: {
-    id: 5,
     name: "Fredag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...TRAINING_DAY_ACTIVITIES],
   },
   6: {
-    id: 6,
     name: "Lørdag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...WEEKEND_ACTIVITIES],
   },
   7: {
-    id: 7,
     name: "Søndag",
-    activities: [
-      {
-        name: "Stå opp",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "wake-up",
-        time: time(6, 0),
-      },
-      {
-        name: "Trening",
-        description: "Nå skal vi ha det ekstra gøy, MED Å LIDE LITT EKSTRA.",
-        activity: "training",
-        time: time(7, 15),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(8, 30),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(10, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(13, 0),
-      },
-      {
-        name: "Kaffe",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "coffee",
-        time: time(14, 0),
-      },
-      {
-        name: "Lunsj",
-        description: "På tide å komme seg opp for å lide nok en dag.",
-        activity: "food",
-        time: time(16, 0),
-      },
-      {
-        name: "Koffeinfri kaffe",
-        description: "Slutten på ei lang veke",
-        activity: "coffee",
-        time: time(18, 0),
-      },
-    ],
+    activities: [...WEEKEND_ACTIVITIES],
   },
 };
