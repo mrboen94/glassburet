@@ -12,6 +12,8 @@ export default function StreamChartSquare({
   const [dataLink, _] = useState(`/unrated/${dataUrl}.json`);
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  var score = 0;
+  var totalPoints = 0;
 
   useEffect(() => {
     setLoading(true);
@@ -24,53 +26,53 @@ export default function StreamChartSquare({
         });
   }, [dataLink]);
 
-  useEffect(() => {
-    console.log(people);
-  }, [people]);
-
   return !loading && data ? (
-    <ResponsiveStream
-      data={data}
-      keys={Object.keys(data[0])}
-      axisTop={null}
-      axisRight={null}
-      enableGridX={false}
-      enableGridY={false}
-      isInteractive={false}
-      offsetType="expand"
-      order="ascending"
-      colors={{ scheme: "nivo" }}
-      fillOpacity={0.85}
-      borderColor={{ theme: "background" }}
-      defs={[
-        {
-          id: "dots",
-          type: "patternDots",
-          background: "inherit",
-          color: "#2c998f",
-          size: 4,
-          padding: 2,
-          stagger: true,
-        },
-        {
-          id: "squares",
-          type: "patternSquares",
-          background: "inherit",
-          color: "#e4c912",
-          size: 6,
-          padding: 2,
-          stagger: true,
-        },
-      ]}
-      fill={Object.entries(people)
-        .filter(([person, checked]) => checked)
-        .map(([person, checked]) => ({
-          match: {
-            id: person,
+    <div className="w-full h-full transition-all">
+      <ResponsiveStream
+        data={data}
+        keys={Object.keys(data[0])}
+        axisTop={null}
+        axisRight={null}
+        enableGridX={false}
+        enableGridY={false}
+        isInteractive={true}
+        enableStackTooltip={false}
+        offsetType="expand"
+        order="ascending"
+        colors={{ scheme: "nivo" }}
+        fillOpacity={0.85}
+        borderColor={{ theme: "background" }}
+        defs={[
+          {
+            id: "dots",
+            type: "patternDots",
+            background: "inherit",
+            color: "#2c998f",
+            size: 4,
+            padding: 2,
+            stagger: true,
           },
-          id: "dots",
-        }))}
-    />
+        ]}
+        fill={Object.entries(people)
+          .filter(([person, checked]) => checked)
+          .map(([person, checked]) => ({
+            match: {
+              id: person,
+            },
+            id: "dots",
+          }))}
+      />
+      <p className="">
+        {data.map((person: Array<number>) => {
+          Object.values(person).map((points) => {
+            score = score + points;
+            totalPoints = totalPoints + 10;
+            console.log(points);
+          });
+        })}{" "}
+        {`${Math.round(((score - 1) / (totalPoints - 100)) * 100)} / 100`}
+      </p>
+    </div>
   ) : (
     <div>loading data...</div>
   );

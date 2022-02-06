@@ -12,6 +12,13 @@ const unrated = [
     imageUrl: "dawn_fm.png",
     url: "theWeeknd-DAWN-FM",
   },
+  {
+    name: "Sondre Nilsen",
+    title: "Rakk ikke pilsen",
+    role: "K-pop",
+    imageUrl: "SondreNilsen.jpg",
+    url: "SondreNilsen-RakkIkkePilsen",
+  },
 ];
 
 const people = {
@@ -42,7 +49,7 @@ export default function Unrated() {
       </div>
       {unrated.map((album) => (
         <Link href={`unrated/${album.url}`} key={album.title}>
-          <li className="col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+          <li className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
             <div className="flex">
               <div className="flex-1 flex flex-col p-8">
                 <img
@@ -56,7 +63,7 @@ export default function Unrated() {
                 <dl className="mt-1 flex-grow flex flex-col justify-between">
                   <dt className="sr-only">Title</dt>
                   <dd className="text-gray-500 text-sm">{album.title}</dd>
-                  <dt className="sr-only">Role</dt>
+                  <dt className="sr-only">Artist</dt>
                   <dd className="mt-3">
                     <span className="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
                       {album.role}
@@ -64,7 +71,7 @@ export default function Unrated() {
                   </dd>
                 </dl>
               </div>
-              <div className="w-24 h-24 m-4">
+              <div className="w-24 h-24 m-10">
                 <StreamChartSquareNoSSR
                   dataUrl={album.url}
                   people={peopleData}
