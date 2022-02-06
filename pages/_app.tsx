@@ -4,11 +4,9 @@ import { Layout } from "../components/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="flex">
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </div>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
 

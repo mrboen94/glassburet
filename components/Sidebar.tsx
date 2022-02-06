@@ -17,7 +17,7 @@ const navigation = [
   { name: "Oversikt", href: "/", icon: HomeIcon, current: true },
   { name: "Regler", href: "/rules", icon: InboxIcon, current: false },
   { name: "Anmerkninger", href: "#", icon: CalendarIcon, current: false },
-  { name: "Unrated", href: "#", icon: MusicNoteIcon, current: false },
+  { name: "Unrated", href: "/unrated", icon: MusicNoteIcon, current: false },
 ];
 
 function classNames(...classes: any) {
@@ -98,6 +98,7 @@ export default function Sidebar() {
                             : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
+                        onClick={() => setSidebarOpen(false)}
                       >
                         <item.icon
                           className={classNames(

@@ -39,7 +39,7 @@ export const Day = ({ day }: Props): JSX.Element => {
 
   return (
     <>
-      <div className="text-center p-8">
+      <div className="text-center p-8 max-w-md">
         <h2 className="text-lg font-semibold text-blue-500 tracking-wide uppercase">
           <Time />
         </h2>
