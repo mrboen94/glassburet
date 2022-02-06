@@ -1,5 +1,6 @@
 import { ResponsiveStream } from "@nivo/stream";
 import { useEffect, useState } from "react";
+import { keys } from "../../lib/keyData";
 import { People } from "../../pages/unrated";
 
 export default function StreamChartSquare({
@@ -35,7 +36,7 @@ export default function StreamChartSquare({
     <div className="w-full h-full transition-all">
       <ResponsiveStream
         data={data}
-        keys={Object.keys(data[0])}
+        keys={keys}
         axisTop={null}
         axisRight={null}
         enableGridX={false}
@@ -70,7 +71,7 @@ export default function StreamChartSquare({
       <p onClick={handleClick}>
         {data.map((person: Array<number>) => {
           Object.values(person).map((points) => {
-            score = score + points;
+            if (points === parseInt(points, 10)) score = score + points;
             totalPoints = totalPoints + 10;
             console.log(points);
           });

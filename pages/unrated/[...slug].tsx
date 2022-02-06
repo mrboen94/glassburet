@@ -7,7 +7,7 @@ const StreamChartNoSSR = dynamic(
 
 function Home() {
   return (
-    <div className="w-screen h-screen max-w-screen-sm max-h-96 md:max-w-md md:max-h-md lg:max-h-lg lg:max-w-lg  2xl:max-h-7xl 2xl:max-w-7xl">
+    <div className="h-full w-11/12 md:max-w-md lg:max-w-lg 2xl:max-w-7xl">
       <StreamChartNoSSR />
     </div>
   );
