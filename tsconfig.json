@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/unrated/[...slug].js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/unrated/[...slug].tsx"],
   "exclude": ["node_modules"]
 }

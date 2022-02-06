@@ -1,6 +1,9 @@
 import dynamic from "next/dynamic";
 
-const StreamChartNoSSR = dynamic(() => import("./StreamChart"), { ssr: false });
+const StreamChartNoSSR = dynamic(
+  () => import("../../components/Visualizations/StreamChart"),
+  { ssr: false }
+);
 
 function Home() {
   return (

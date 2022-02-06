@@ -6,7 +6,6 @@ export default function StreamChart() {
   const router = useRouter();
   const [slug, setSlug] = useState(null);
   const [data, setData] = useState(null);
-  const [keys, setKeys] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,14 +23,10 @@ export default function StreamChart() {
         });
   }, [slug]);
 
-  useEffect(() => {
-    data && (setKeys(data[0].keys), data.shift());
-  }, [data]);
-
-  return !loading && data && keys ? (
+  return !loading && data ? (
     <ResponsiveStream
       data={data}
-      keys={keys}
+      keys={Object.keys(data[0])}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       axisTop={null}
       axisRight={null}
