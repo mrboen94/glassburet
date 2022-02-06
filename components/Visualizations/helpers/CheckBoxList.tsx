@@ -10,7 +10,7 @@ export default function CheckBoxList({
   return (
     <fieldset>
       <legend className="text-lg font-medium text-gray-900">Members</legend>
-      <div className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
+      <div className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200 md:max-w-md">
         {Object.entries(people).map(([name, checked]) => (
           <div key={name} className="relative flex items-start py-4">
             <div className="min-w-0 flex-1 text-sm">

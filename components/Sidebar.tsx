@@ -9,6 +9,7 @@ import {
   MenuIcon,
   XIcon,
   MusicNoteIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +19,7 @@ const navigation = [
   { name: "Regler", href: "/rules", icon: InboxIcon, current: false },
   { name: "Anmerkninger", href: "#", icon: CalendarIcon, current: false },
   { name: "Unrated", href: "/unrated", icon: MusicNoteIcon, current: false },
+  { name: "FAQ", href: "/faq", icon: QuestionMarkCircleIcon, curren: false },
 ];
 
 function classNames(...classes: any) {
