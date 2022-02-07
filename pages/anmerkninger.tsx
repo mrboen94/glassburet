@@ -79,11 +79,10 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
 };
 
 export async function getStaticProps(context: any) {
-  const anmerkninger = await getAnmerkninger();
+  const res = await getAnmerkninger();
+  const anmerkninger = res.slice(1, res.length);
   return {
-    props: {
-      anmerkninger: anmerkninger.slice(1, anmerkninger.length),
-    },
+    props: { anmerkninger },
     revalidate: 1,
   };
 }
