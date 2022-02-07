@@ -78,7 +78,7 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
   );
 };
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
   const res = await getAnmerkninger();
   const anmerkninger = res.slice(1, res.length);
   return {
