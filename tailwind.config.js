@@ -14,6 +14,12 @@ module.exports = {
       colors: {
         rose: colors.rose,
       },
+      screens: {
+        print: { raw: "print" },
+      },
+      scale: {
+        "-1": "-1",
+      },
     },
   },
   variants: {
