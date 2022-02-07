@@ -11,7 +11,7 @@ export default function handler(
     activities: today.activities
       .map((it) => ({
         ...it,
-        time: new Date().setHours(it.time.hour, it.time.minute),
+        time: new Date().setUTCHours(it.time.hour, it.time.minute),
       }))
       .sort((a, b) => b.time - a.time),
   };

@@ -12,7 +12,7 @@ export default function handler(
     activities: tomorrow.activities
       .map((it) => ({
         ...it,
-        time: add(new Date(), { days: 1 }).setHours(
+        time: add(new Date(), { days: 1 }).setUTCHours(
           it.time.hour,
           it.time.minute
         ),
