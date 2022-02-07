@@ -37,7 +37,7 @@ export interface ApiEntry extends PlainEntry {
 
 export const showNextDay = (): boolean => {
   const localTime = new Date();
-  const nextDay = new Date().setHours(20, 0, 0, 0);
+  const nextDay = new Date().setUTCHours(20, 0, 0, 0);
 
   return isAfter(localTime, nextDay);
 };
