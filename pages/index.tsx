@@ -3,7 +3,7 @@ import Head from "next/head";
 import Loader from "react-loader-spinner";
 import useSWR from "swr";
 import { Day } from "../components/Day";
-import { showNextDay } from "../lib/data";
+import { convertApiResponse, showNextDay } from "../lib/data";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -12,6 +12,10 @@ const Home: NextPage = () => {
   const { data, error } = useSWR(`/api/${endpoint}`, fetcher);
 
   if (error) return <div>Something went wrong :(</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const day = convertApiResponse(data);
+  console.log(day);
 
   return (
     <>
@@ -25,7 +29,7 @@ const Home: NextPage = () => {
             <Loader type="Bars" color="#00BFFF" height={80} width={80} />
           </div>
         ) : (
-          <Day day={data} />
+          <Day day={day} />
         )}
       </main>
     </>

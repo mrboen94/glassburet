@@ -1,6 +1,6 @@
+import { formatISO } from "date-fns";
 import { NextApiRequest, NextApiResponse } from "next";
-import { ApiDayPlan, getTomorrow } from "../../lib/data";
-import { add } from "date-fns";
+import { ApiDayPlan, getTomorrow, setDate } from "../../lib/data";
 
 export default function handler(
   _req: NextApiRequest,
@@ -12,12 +12,9 @@ export default function handler(
     activities: tomorrow.activities
       .map((it) => ({
         ...it,
-        time: add(new Date(), { days: 1 }).setUTCHours(
-          it.time.hour,
-          it.time.minute
-        ),
+        time: formatISO(setDate(it.time, 1)),
       }))
-      .sort((a, b) => b.time - a.time),
+      .reverse(),
   };
 
   res.status(200).json(data);

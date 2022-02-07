@@ -1,23 +1,23 @@
 import { DayEntry } from "./Entry";
-import { fromUnixTime, isAfter, isBefore } from "date-fns";
+import { isAfter, isBefore } from "date-fns";
 import VerticalBar from "./VerticalBar";
-import { ApiEntry } from "../lib/data";
+import { AppEntry } from "../lib/data";
 
 interface Props {
-  events: Array<ApiEntry>;
+  events: Array<AppEntry>;
 }
 
-const isBetween = (start: number, end: number): boolean => {
+const isBetween = (start: Date, end: Date): boolean => {
   return isAfter(start, new Date()) && isBefore(end, new Date());
 };
 
 const currentProgress = (
-  start: number,
-  nextEvent: number,
+  start: Date,
+  nextEvent: Date,
   current: Date
 ): number => {
-  const nextEventTime = fromUnixTime(nextEvent).getTime();
-  const startTime = fromUnixTime(start).getTime() - nextEventTime;
+  const nextEventTime = nextEvent.getTime();
+  const startTime = start.getTime() - nextEventTime;
   const currentTime = current.getTime() - nextEventTime;
   const fraction = currentTime / startTime;
   return fraction * 100;
