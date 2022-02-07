@@ -30,7 +30,7 @@ export default function Scoreboard({ data }: { data: any }) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.map((datapoint, idx) => (
+                {data.map((datapoint: any, idx: number) => (
                   <tr key={datapoint}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {idx}
@@ -39,7 +39,7 @@ export default function Scoreboard({ data }: { data: any }) {
                       {datapoint.Song}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {Object.values(datapoint).map((points) => {
+                      {Object.values(datapoint).map((points: any) => {
                         if (points === parseInt(points, 10)) {
                           score = score + points;
                           totalPoints = totalPoints + 10;
