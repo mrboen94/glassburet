@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import Head from "next/head";
 import {
   SoeleAnmerkning,
@@ -6,7 +7,7 @@ import {
 } from "../components/Visualizations/helpers/Anmerkning";
 import { getAnmerkninger } from "../lib/sheets";
 
-export default function Marks({ anmerkninger }: any) {
+const Marks: NextPage = ({ anmerkninger }: any) => {
   return (
     <>
       <Head>
@@ -75,7 +76,7 @@ export default function Marks({ anmerkninger }: any) {
       </div>
     </>
   );
-}
+};
 
 export async function getStaticProps(context: any) {
   const anmerkninger = await getAnmerkninger();
@@ -86,3 +87,5 @@ export async function getStaticProps(context: any) {
     revalidate: 1,
   };
 }
+
+export default Marks;
