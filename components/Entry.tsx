@@ -1,4 +1,4 @@
-import { Activity, ApiEntry } from "../lib/data";
+import { Activity, AppEntry } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -34,7 +34,7 @@ const getIcon = (activity: Activity): JSX.Element => {
   }
 };
 
-const formatDate = (date: number): string => {
+const formatDate = (date: Date): string => {
   if (isAfter(new Date(), date))
     return formatRelative(date, new Date(), { locale: nb });
   if (isBefore(new Date(), date))
@@ -46,7 +46,7 @@ const formatDate = (date: number): string => {
   return format(date, "HH:mm");
 };
 
-export const DayEntry = ({ entry }: { entry: ApiEntry }): JSX.Element => {
+export const DayEntry = ({ entry }: { entry: AppEntry }): JSX.Element => {
   const isEntryAfter = isAfter(entry.time, new Date());
 
   return (

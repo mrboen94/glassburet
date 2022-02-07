@@ -1,4 +1,12 @@
-import { getISODay, isAfter } from "date-fns";
+import {
+  add,
+  getISODay,
+  isAfter,
+  parseISO,
+  setHours,
+  setMinutes,
+} from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 
 export interface DayPlan {
   name: string;
@@ -8,6 +16,11 @@ export interface DayPlan {
 export interface ApiDayPlan {
   name: string;
   activities: Array<ApiEntry>;
+}
+
+export interface AppDayPlan {
+  name: string;
+  activities: Array<AppEntry>;
 }
 
 export type Activity =
@@ -24,16 +37,51 @@ export interface PlainEntry {
   activity: Activity;
 }
 
+export interface Time {
+  hour: number;
+  minute: number;
+}
+
 export interface Entry extends PlainEntry {
-  time: {
-    hour: number;
-    minute: number;
-  };
+  time: Time;
 }
 
 export interface ApiEntry extends PlainEntry {
-  time: number;
+  time: string;
 }
+
+export interface AppEntry extends PlainEntry {
+  time: Date;
+}
+
+export const TIME_ZONE = "Europe/Oslo";
+
+export const timeToLocalTimezone = (time: Time, days: number = 0): string => {
+  return toLocalTimezone(
+    add(new Date().setUTCHours(time.hour, time.minute), { days: days })
+  ).toISOString();
+};
+
+export const toLocalTimezone = (date: Date | number): Date => {
+  return utcToZonedTime(date, TIME_ZONE);
+};
+
+export const convertApiResponse = (resp: ApiDayPlan): AppDayPlan => {
+  return {
+    name: resp.name,
+    activities: resp.activities.map((entry) => ({
+      ...entry,
+      time: toLocalTimezone(parseISO(entry.time)),
+    })),
+  };
+};
+
+export const setDate = (time: Time, days: number = 0): Date => {
+  return setMinutes(
+    setHours(add(new Date(), { days: days }), time.hour),
+    time.minute
+  );
+};
 
 export const showNextDay = (): boolean => {
   const localTime = new Date();

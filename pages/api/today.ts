@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ApiDayPlan, getToday } from "../../lib/data";
+import { ApiDayPlan, getToday, setDate } from "../../lib/data";
 
 export default function handler(
   _req: NextApiRequest,
@@ -11,9 +11,9 @@ export default function handler(
     activities: today.activities
       .map((it) => ({
         ...it,
-        time: new Date().setUTCHours(it.time.hour, it.time.minute),
+        time: setDate(it.time).toISOString(),
       }))
-      .sort((a, b) => b.time - a.time),
+      .reverse(),
   };
 
   res.status(200).json(data);

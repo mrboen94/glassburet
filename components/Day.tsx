@@ -3,9 +3,9 @@ import { EventList } from "./EventList";
 import { isAfter, isBefore } from "date-fns";
 import { useState } from "react";
 import { Time } from "./Time";
-import { ApiDayPlan } from "../lib/data";
+import { AppDayPlan } from "../lib/data";
 
-export const Day = ({ day }: { day: ApiDayPlan }): JSX.Element => {
+export const Day = ({ day }: { day: AppDayPlan }): JSX.Element => {
   const [show, setShow] = useState(false);
 
   let after = day.activities.filter((it) => isBefore(it.time, new Date()));
