@@ -1,16 +1,50 @@
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Scoreboard from "../../components/Visualizations/Scoreboard";
 
 const StreamChartNoSSR = dynamic(
   () => import("../../components/Visualizations/StreamChart"),
   { ssr: false }
 );
 
-function Home() {
+export default function Album() {
+  const router = useRouter();
+  const [slug, setSlug] = useState<string>("");
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [mobile, setMobile] = useState(true);
+
+  useEffect(() => {
+    router.query.slug && setSlug(`/unrated/${router.query.slug[0]}.json`);
+  }, [router]);
+
+  useEffect(() => {
+    setLoading(true);
+    /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+      ? setMobile(true)
+      : setMobile(false);
+    slug &&
+      fetch(slug)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        });
+  }, [slug]);
+
   return (
     <div className="h-full w-11/12 md:max-w-md lg:max-w-lg 2xl:max-w-7xl">
-      <StreamChartNoSSR />
+      {!loading && data ? (
+        <div className="w-full h-full flex flex-col xl:flex-row">
+          <Scoreboard data={data} />
+          <StreamChartNoSSR data={data} mobile={mobile} />
+        </div>
+      ) : (
+        <div>Loading data...</div>
+      )}
     </div>
   );
 }
-
-export default Home;

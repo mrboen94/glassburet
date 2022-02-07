@@ -1,9 +1,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import CheckBoxList from "../components/Visualizations/helpers/CheckBoxList";
 import { useState } from "react";
 import FilterMenu from "../components/FilterMenu";
-import { MdAlbum } from "react-icons/md";
 
 // TODO: Move albums to another file
 const unrated = [
