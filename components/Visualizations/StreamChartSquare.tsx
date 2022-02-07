@@ -33,21 +33,46 @@ export default function StreamChartSquare({
   }
 
   return !loading && data ? (
-    <div className="w-full h-full transition-all">
+    <div className="w-full h-24 transition-all relative bottom-0 right-0 left-0 rounded-lg overflow-hidden">
+      <div onClick={handleClick} className="-scale-x-1 rotate-180">
+        <div className="relative">
+          <div
+            className="absolute inset-0 flex items-center"
+            aria-hidden="true"
+          >
+            <div className="w-full mx-10 border-t border-gray-300" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="px-3 bg-white text-lg font-medium text-gray-900">
+              {data.map((person: Array<any>) => {
+                Object.values(person).map((points) => {
+                  if (points === parseInt(points, 10)) score = score + points;
+                  totalPoints = totalPoints + 10;
+                });
+              })}{" "}
+              {`${Math.round(
+                ((score - 1) / (totalPoints - 100)) * totalScore
+              )} / ${totalScore}`}
+            </span>
+          </div>
+        </div>
+      </div>
       <ResponsiveStream
         data={data}
         keys={keys}
+        height={75}
         axisTop={null}
         axisRight={null}
         enableGridX={false}
         enableGridY={false}
-        isInteractive={true}
+        isInteractive={false}
         enableStackTooltip={false}
-        offsetType="expand"
+        offsetType="diverging"
         order="ascending"
         colors={{ scheme: "nivo" }}
-        fillOpacity={0.85}
-        borderColor={{ theme: "background" }}
+        fillOpacity={1}
+        borderWidth={1}
+        margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
         defs={[
           {
             id: "dots",
@@ -68,17 +93,6 @@ export default function StreamChartSquare({
             id: "dots",
           }))}
       />
-      <p onClick={handleClick}>
-        {data.map((person: Array<any>) => {
-          Object.values(person).map((points) => {
-            if (points === parseInt(points, 10)) score = score + points;
-            totalPoints = totalPoints + 10;
-          });
-        })}{" "}
-        {`${Math.round(
-          ((score - 1) / (totalPoints - 100)) * totalScore
-        )} / ${totalScore}`}
-      </p>
     </div>
   ) : (
     <div>loading data...</div>

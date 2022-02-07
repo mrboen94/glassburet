@@ -50,8 +50,14 @@ export default function Unrated() {
           {unrated.map((album) => (
             <li
               key={album.title}
-              className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
+              className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow "
             >
+              <div className="md:w-full h-24 m-10 mb-0 mt-0 md:mx-auto content-center overflow-hidden -scale-x-1 rotate-180">
+                <StreamChartSquareNoSSR
+                  dataUrl={album.url}
+                  people={peopleData}
+                />
+              </div>
               <div className="flex flex-col">
                 <div className="flex-1 flex flex-col p-8 pb-4">
                   <Link href={`unrated/${album.url}`} passHref>
@@ -77,12 +83,6 @@ export default function Unrated() {
                       </dl>
                     </div>
                   </Link>
-                </div>
-                <div className="md:w-24 h-24 m-10 mt-0 md:mx-auto content-center">
-                  <StreamChartSquareNoSSR
-                    dataUrl={album.url}
-                    people={peopleData}
-                  />
                 </div>
               </div>
             </li>
