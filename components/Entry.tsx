@@ -1,4 +1,4 @@
-import { Activity, AppEntry } from "../lib/data";
+import { Activity, AppEntry, TIME_ZONE } from "../lib/data";
 import {
   MdCoffee,
   MdDinnerDining,
@@ -8,14 +8,9 @@ import {
   MdOutlineCheckCircleOutline,
 } from "react-icons/md";
 import { IoMdHeart } from "react-icons/io";
-import {
-  formatDistance,
-  formatRelative,
-  isAfter,
-  isBefore,
-  format,
-} from "date-fns";
+import { formatDistance, formatRelative, isAfter, isBefore } from "date-fns";
 import { nb } from "date-fns/locale";
+import { format, formatInTimeZone } from "date-fns-tz";
 
 const getIcon = (activity: Activity): JSX.Element => {
   switch (activity) {
@@ -43,7 +38,7 @@ const formatDate = (date: Date): string => {
       locale: nb,
     });
 
-  return format(date, "HH:mm");
+  return formatInTimeZone(date, TIME_ZONE, "HH:mm");
 };
 
 export const DayEntry = ({ entry }: { entry: AppEntry }): JSX.Element => {
