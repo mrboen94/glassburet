@@ -8,6 +8,8 @@ export default function StreamChart() {
   const [slug, setSlug] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  var score = 0;
+  var totalPoints = 0;
 
   const stackToolTipComp = (props) => {
     return <p>I am a React.FunctionComponent</p>;
@@ -48,6 +50,12 @@ export default function StreamChart() {
                     >
                       Title
                     </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Score
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -58,6 +66,20 @@ export default function StreamChart() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {datapoint.Song}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {Object.values(datapoint).map((points) => {
+                          if (points === parseInt(points, 10)) {
+                            score = score + points;
+                            totalPoints = totalPoints + 10;
+                          } else {
+                            totalPoints = 0;
+                            score = 0;
+                          }
+                        })}
+                        {`${Math.round(
+                          ((score - 1) / totalPoints) * 100
+                        )} / 100`}
                       </td>
                     </tr>
                   ))}

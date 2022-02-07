@@ -69,7 +69,7 @@ export default function StreamChartSquare({
           }))}
       />
       <p onClick={handleClick}>
-        {data.map((person: Array<number>) => {
+        {data.map((person: Array<any>) => {
           Object.values(person).map((points) => {
             if (points === parseInt(points, 10)) score = score + points;
             totalPoints = totalPoints + 10;
