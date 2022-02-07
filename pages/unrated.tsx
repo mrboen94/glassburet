@@ -56,6 +56,7 @@ export default function Unrated() {
                 <div className="flex-1 flex flex-col p-8 pb-4">
                   <Link href={`unrated/${album.url}`} passHref>
                     <div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin"
                         src={album.imageUrl}
