@@ -89,7 +89,7 @@ export default function StreamChart() {
           </div>
         </div>
       </div>
-      <div className="py-12 min-h-full min-w-full">
+      <div className="py-12 min-h-96 min-w-full h-96 w-96">
         <ResponsiveStream
           data={data}
           keys={keys}
