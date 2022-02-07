@@ -73,7 +73,6 @@ export default function StreamChartSquare({
           Object.values(person).map((points) => {
             if (points === parseInt(points, 10)) score = score + points;
             totalPoints = totalPoints + 10;
-            console.log(points);
           });
         })}{" "}
         {`${Math.round(
