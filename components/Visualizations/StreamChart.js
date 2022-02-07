@@ -8,18 +8,21 @@ export default function StreamChart() {
   const [slug, setSlug] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [mobile, setMobile] = useState(false);
   var score = 0;
   var totalPoints = 0;
 
-  const stackToolTipComp = (props) => {
-    return <p>I am a React.FunctionComponent</p>;
-  };
   useEffect(() => {
     router.query.slug && setSlug(`/unrated/${router.query.slug[0]}.json`);
   }, [router]);
 
   useEffect(() => {
     setLoading(true);
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+      ? setMobile(true)
+      : setMobile(false);
     slug &&
       fetch(slug)
         .then((res) => res.json())
@@ -89,7 +92,7 @@ export default function StreamChart() {
           </div>
         </div>
       </div>
-      <div className="py-12 min-h-96 min-w-full h-96 w-96">
+      <div className="py-12 min-h-96 h-96 w-full">
         <ResponsiveStream
           data={data}
           keys={keys}
@@ -102,8 +105,8 @@ export default function StreamChart() {
             tickSize: 5,
             tickPadding: 5,
             legend: "Track number",
-            legendOffset: 30,
-            legendPosition: "middle",
+            legendOffset: 40,
+            legendPosition: "right",
           }}
           axisLeft={{
             orient: "left",
@@ -123,10 +126,10 @@ export default function StreamChart() {
           borderColor={{ theme: "background" }}
           legends={[
             {
-              anchor: "right",
-              direction: "column",
-              translateX: 90,
-              translateY: 0,
+              anchor: mobile ? "bottom" : "right",
+              direction: mobile ? "row" : "column",
+              translateX: 0,
+              translateY: 50,
               itemWidth: 80,
               itemHeight: 16,
               itemTextColor: "#999999",
