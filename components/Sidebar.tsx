@@ -17,7 +17,12 @@ import Link from "next/link";
 const navigation = [
   { name: "Oversikt", href: "/", icon: HomeIcon, current: true },
   { name: "Regler", href: "/rules", icon: InboxIcon, current: false },
-  { name: "Anmerkninger", href: "/marks", icon: CalendarIcon, current: false },
+  {
+    name: "Anmerkninger",
+    href: "/anmerkninger",
+    icon: CalendarIcon,
+    current: false,
+  },
   { name: "Unrated", href: "/unrated", icon: MusicNoteIcon, current: false },
   { name: "FAQ", href: "/faq", icon: QuestionMarkCircleIcon, curren: false },
 ];

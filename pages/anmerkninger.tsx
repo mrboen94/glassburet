@@ -4,7 +4,7 @@ import {
   TidsAnmerkning,
   TreningsAnmerkning,
 } from "../components/Visualizations/helpers/Anmerkning";
-import { getMarks } from "../lib/sheets";
+import { getAnmerkninger } from "../lib/sheets";
 
 export default function Marks({ anmerkninger }: any) {
   return (
@@ -78,10 +78,11 @@ export default function Marks({ anmerkninger }: any) {
 }
 
 export async function getStaticProps(context: any) {
-  const anmerkninger = await getMarks();
+  const anmerkninger = await getAnmerkninger();
   return {
     props: {
       anmerkninger: anmerkninger.slice(1, anmerkninger.length),
     },
+    revalidate: 1,
   };
 }
