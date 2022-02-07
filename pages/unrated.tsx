@@ -16,7 +16,7 @@ const unrated = [
     name: "Sondre Nilsen",
     title: "Rakk ikke pilsen",
     role: "K-pop",
-    imageUrl: "SondreNilsen.jpg",
+    imageUrl: "sondreNilsen.jpg",
     url: "SondreNilsen-RakkIkkePilsen",
   },
 ];
