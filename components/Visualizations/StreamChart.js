@@ -18,7 +18,7 @@ export default function StreamChart() {
 
   useEffect(() => {
     setLoading(true);
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
       ? setMobile(true)
@@ -97,15 +97,13 @@ export default function StreamChart() {
           data={data}
           keys={keys}
           margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-          axisTop={null}
           axisRight={null}
           axisBottom={{
             orient: "bottom",
-            tickValues: data.map((_, idx) => [idx]),
             tickSize: 5,
             tickPadding: 5,
-            legend: "Track number",
             legendOffset: 40,
+            legend: "Track number",
             legendPosition: "right",
           }}
           axisLeft={{
@@ -126,10 +124,10 @@ export default function StreamChart() {
           borderColor={{ theme: "background" }}
           legends={[
             {
-              anchor: mobile ? "bottom" : "right",
-              direction: mobile ? "row" : "column",
-              translateX: 0,
-              translateY: 50,
+              anchor: mobile ? "right" : "top",
+              direction: mobile ? "column" : "row",
+              translateX: mobile ? 90 : 0,
+              translateY: mobile ? 0 : -50,
               itemWidth: 80,
               itemHeight: 16,
               itemTextColor: "#999999",

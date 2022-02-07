@@ -7,6 +7,7 @@ export default function CheckBoxList({
   people: People;
   onChange: Function;
 }) {
+  console.log(people);
   return (
     <fieldset>
       <legend className="text-lg font-medium text-gray-900">Members</legend>
