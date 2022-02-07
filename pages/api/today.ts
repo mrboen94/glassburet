@@ -1,3 +1,4 @@
+import { formatISO } from "date-fns";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ApiDayPlan, getToday, setDate } from "../../lib/data";
 
@@ -11,7 +12,7 @@ export default function handler(
     activities: today.activities
       .map((it) => ({
         ...it,
-        time: setDate(it.time).toISOString(),
+        time: formatISO(setDate(it.time)),
       }))
       .reverse(),
   };

@@ -1,12 +1,5 @@
-import {
-  add,
-  getISODay,
-  isAfter,
-  parseISO,
-  setHours,
-  setMinutes,
-} from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
+import { add, getISODay, isAfter, parseISO, set } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
 
 export interface DayPlan {
   name: string;
@@ -56,38 +49,23 @@ export interface AppEntry extends PlainEntry {
 
 export const TIME_ZONE = "Europe/Oslo";
 
-export const timeToLocalTimezone = (time: Time, days: number = 0): string => {
-  return toLocalTimezone(
-    add(new Date().setUTCHours(time.hour, time.minute), { days: days })
-  ).toISOString();
-};
-
-export const toLocalTimezone = (date: Date | number): Date => {
-  return utcToZonedTime(date, TIME_ZONE);
-};
-
 export const convertApiResponse = (resp: ApiDayPlan): AppDayPlan => {
   return {
     name: resp.name,
     activities: resp.activities.map((entry) => ({
       ...entry,
-      time: toLocalTimezone(parseISO(entry.time)),
+      time: parseISO(entry.time),
     })),
   };
 };
 
-const todayUTC = (): Date => {
-  const today = new Date();
-  return new Date(
-    Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate())
-  );
-};
-
 export const setDate = (time: Time, days: number = 0): Date => {
-  return setMinutes(
-    setHours(add(todayUTC(), { days: days }), time.hour),
-    time.minute
-  );
+  const date = set(add(new Date(), { days: days }), {
+    hours: time.hour,
+    minutes: time.minute,
+  });
+
+  return zonedTimeToUtc(date, TIME_ZONE);
 };
 
 export const showNextDay = (): boolean => {
