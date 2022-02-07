@@ -55,13 +55,13 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {data.data[0]}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 text-sm text-gray-500">
                   <TidsAnmerkning number={parseInt(data.data[1], 10)} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 text-sm text-gray-500">
                   <TreningsAnmerkning number={parseInt(data.data[2], 10)} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 text-sm text-gray-500">
                   <SoeleAnmerkning number={parseInt(data.data[3], 10)} />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
