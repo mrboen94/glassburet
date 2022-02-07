@@ -76,9 +76,16 @@ export const convertApiResponse = (resp: ApiDayPlan): AppDayPlan => {
   };
 };
 
+const todayUTC = (): Date => {
+  const today = new Date();
+  return new Date(
+    Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate())
+  );
+};
+
 export const setDate = (time: Time, days: number = 0): Date => {
   return setMinutes(
-    setHours(add(new Date(), { days: days }), time.hour),
+    setHours(add(todayUTC(), { days: days }), time.hour),
     time.minute
   );
 };
