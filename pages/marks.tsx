@@ -83,6 +83,5 @@ export async function getStaticProps(context: any) {
     props: {
       anmerkninger: anmerkninger.slice(1, anmerkninger.length),
     },
-    revalidate: 1, // In seconds
   };
 }
