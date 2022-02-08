@@ -35,7 +35,7 @@ export default function StreamChartSquare({
   }
 
   return !loading && data ? (
-    <div className="w-full h-48 transition-all relative bottom-0 right-0 left-0 rounded-lg overflow-hidden print:rounded-none print:overflow-visible">
+    <div className="w-full h-24 print:h-48 transition-all relative bottom-0 right-0 left-0 rounded-lg overflow-hidden print:rounded-none print:overflow-visible">
       <div onClick={handleClick} className="-scale-x-1 rotate-180">
         <div className="relative">
           <div
@@ -60,17 +60,15 @@ export default function StreamChartSquare({
         </div>
       </div>
       {printing ? (
-        <div className="block print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen print:transform-none">
+        <div className="hidden print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
           <ResponsiveStream
             data={data}
             keys={keys}
             height={170}
             width={800}
-            axisTop={null}
-            axisRight={null}
             enableGridX={false}
             enableGridY={false}
-            isInteractive={false}
+            isInteractive={true}
             enableStackTooltip={false}
             offsetType="diverging"
             order="ascending"
@@ -100,16 +98,14 @@ export default function StreamChartSquare({
           />
         </div>
       ) : (
-        <div className="relative h-48 left-0 right-0 print:w-screen">
+        <div className="relative h-24 left-0 right-0 rounded-lg overflow-hidden">
           <ResponsiveStream
             data={data}
             keys={keys}
-            height={170}
-            axisTop={null}
-            axisRight={null}
+            height={70}
             enableGridX={false}
             enableGridY={false}
-            isInteractive={false}
+            isInteractive={true}
             enableStackTooltip={false}
             offsetType="diverging"
             order="ascending"
@@ -137,7 +133,6 @@ export default function StreamChartSquare({
                 id: "dots",
               }))}
           />
-          )
         </div>
       )}
     </div>

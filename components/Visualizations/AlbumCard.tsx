@@ -8,6 +8,10 @@ const StreamChartSquareNoSSR = dynamic(
   { ssr: false }
 );
 
+function delay(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 export default function AlbumCard({
   album,
   people,
@@ -19,17 +23,14 @@ export default function AlbumCard({
   const [printing, setPrinting] = useState(false);
   const handlePrint = useReactToPrint({
     content: () => ref.current,
-    onBeforeGetContent: () => setPrinting(true),
+    onBeforeGetContent: () => delay(10).then(() => setPrinting(true)),
     onAfterPrint: () => setPrinting(false),
   });
   return (
     <div className="flex flex-col">
-      <div
-        ref={ref}
-        className="print:w-full print:border-2 print:border-gray-200"
-      >
-        <li className="hover:shadow-lg transition-all col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow print:shadow-none print:rounded-none">
-          <div className="w-full h-48 mb-0 mt-0 content-center -scale-x-1 rotate-180 print:mb-14 print:w-full">
+      <div ref={ref} className="print:w-full">
+        <li className="hover:shadow-lg col-span-1 cursor-pointer flex flex-col text-center bg-white rounded-lg shadow print:shadow-none print:rounded-none">
+          <div className="w-full h-24 print:h-48 mb-0 mt-0 content-center -scale-x-1 rotate-180 print:mb-14 print:w-full">
             <StreamChartSquareNoSSR
               dataUrl={album.url}
               people={people}
@@ -42,7 +43,7 @@ export default function AlbumCard({
                 <div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin"
+                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin print:animate-none print:w-48"
                     src={album.imageUrl}
                     alt=""
                   />
