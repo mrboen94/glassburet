@@ -20,6 +20,9 @@ module.exports = {
       scale: {
         "-1": "-1",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
     },
   },
   variants: {
