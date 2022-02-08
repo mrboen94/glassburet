@@ -59,84 +59,87 @@ export default function StreamChartSquare({
           </div>
         </div>
       </div>
-      <div className="hidden print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
-        <ResponsiveStream
-          data={data}
-          keys={keys}
-          height={170}
-          width={800}
-          axisTop={null}
-          axisRight={null}
-          enableGridX={false}
-          enableGridY={false}
-          isInteractive={false}
-          enableStackTooltip={false}
-          offsetType="diverging"
-          order="ascending"
-          colors={{ scheme: "nivo" }}
-          fillOpacity={1}
-          borderWidth={1}
-          margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
-          defs={[
-            {
-              id: "dots",
-              type: "patternDots",
-              background: "inherit",
-              color: "#2c998f",
-              size: 4,
-              padding: 2,
-              stagger: true,
-            },
-          ]}
-          fill={Object.entries(people)
-            .filter(([person, checked]) => checked)
-            .map(([person, checked]) => ({
-              match: {
-                id: person,
+      {printing ? (
+        <div className="block print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen print:transform-none">
+          <ResponsiveStream
+            data={data}
+            keys={keys}
+            height={170}
+            width={800}
+            axisTop={null}
+            axisRight={null}
+            enableGridX={false}
+            enableGridY={false}
+            isInteractive={false}
+            enableStackTooltip={false}
+            offsetType="diverging"
+            order="ascending"
+            colors={{ scheme: "nivo" }}
+            fillOpacity={1}
+            borderWidth={1}
+            margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
+            defs={[
+              {
+                id: "dots",
+                type: "patternDots",
+                background: "inherit",
+                color: "#2c998f",
+                size: 4,
+                padding: 2,
+                stagger: true,
               },
-              id: "dots",
-            }))}
-        />
-      </div>
-      <div className="relative h-48 left-0 right-0 print:w-screen">
-        <ResponsiveStream
-          data={data}
-          keys={keys}
-          height={170}
-          axisTop={null}
-          axisRight={null}
-          enableGridX={false}
-          enableGridY={false}
-          isInteractive={false}
-          enableStackTooltip={false}
-          offsetType="diverging"
-          order="ascending"
-          colors={{ scheme: "nivo" }}
-          fillOpacity={1}
-          borderWidth={1}
-          margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
-          defs={[
-            {
-              id: "dots",
-              type: "patternDots",
-              background: "inherit",
-              color: "#2c998f",
-              size: 4,
-              padding: 2,
-              stagger: true,
-            },
-          ]}
-          fill={Object.entries(people)
-            .filter(([person, checked]) => checked)
-            .map(([person, checked]) => ({
-              match: {
-                id: person,
+            ]}
+            fill={Object.entries(people)
+              .filter(([person, checked]) => checked)
+              .map(([person, checked]) => ({
+                match: {
+                  id: person,
+                },
+                id: "dots",
+              }))}
+          />
+        </div>
+      ) : (
+        <div className="relative h-48 left-0 right-0 print:w-screen">
+          <ResponsiveStream
+            data={data}
+            keys={keys}
+            height={170}
+            axisTop={null}
+            axisRight={null}
+            enableGridX={false}
+            enableGridY={false}
+            isInteractive={false}
+            enableStackTooltip={false}
+            offsetType="diverging"
+            order="ascending"
+            colors={{ scheme: "nivo" }}
+            fillOpacity={1}
+            borderWidth={1}
+            margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
+            defs={[
+              {
+                id: "dots",
+                type: "patternDots",
+                background: "inherit",
+                color: "#2c998f",
+                size: 4,
+                padding: 2,
+                stagger: true,
               },
-              id: "dots",
-            }))}
-        />
-        )
-      </div>
+            ]}
+            fill={Object.entries(people)
+              .filter(([person, checked]) => checked)
+              .map(([person, checked]) => ({
+                match: {
+                  id: person,
+                },
+                id: "dots",
+              }))}
+          />
+          )
+        </div>
+      )}
     </div>
   ) : (
     <div>loading data...</div>
