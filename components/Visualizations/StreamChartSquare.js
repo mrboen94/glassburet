@@ -1,19 +1,10 @@
 import { ResponsiveStream } from "@nivo/stream";
 import { useEffect, useState } from "react";
 import { keys } from "../../lib/keyData";
-import { People } from "../../pages/unrated";
 
-export default function StreamChartSquare({
-  dataUrl,
-  people,
-  printing,
-}: {
-  dataUrl: string;
-  people: People;
-  printing: boolean;
-}) {
+export default function StreamChartSquare({ dataUrl, people, printing }) {
   const [dataLink, _] = useState(`/unrated/${dataUrl}.json`);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [totalScore, setTotalScore] = useState(100);
   var score = 0;
@@ -46,7 +37,7 @@ export default function StreamChartSquare({
           </div>
           <div className="relative flex justify-center">
             <span className="px-3 bg-white text-lg font-medium text-gray-900">
-              {data.map((person: Array<any>) => {
+              {data.map((person) => {
                 Object.values(person).map((points) => {
                   if (points === parseInt(points, 10)) score = score + points;
                   totalPoints = totalPoints + 10;
@@ -60,15 +51,15 @@ export default function StreamChartSquare({
         </div>
       </div>
       {printing ? (
-        <div className="hidden print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
+        <div className="relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
           <ResponsiveStream
             data={data}
             keys={keys}
-            height="170"
-            width="800"
+            height={170}
+            width={800}
             enableGridX={false}
             enableGridY={false}
-            isInteractive={true}
+            isInteractive={false}
             enableStackTooltip={false}
             offsetType="diverging"
             order="ascending"
@@ -102,10 +93,10 @@ export default function StreamChartSquare({
           <ResponsiveStream
             data={data}
             keys={keys}
-            height="70"
+            height={70}
             enableGridX={false}
             enableGridY={false}
-            isInteractive={true}
+            isInteractive={false}
             enableStackTooltip={false}
             offsetType="diverging"
             order="ascending"

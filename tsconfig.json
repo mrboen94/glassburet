@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/unrated/[...slug].tsx"
+    "pages/unrated/[...slug].tsx",
+    "components/Visualizations/StreamChartSquare.js"
   ],
   "exclude": ["node_modules"]
 }

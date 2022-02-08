@@ -23,7 +23,7 @@ export default function AlbumCard({
   const [printing, setPrinting] = useState(false);
   const handlePrint = useReactToPrint({
     content: () => ref.current,
-    onBeforeGetContent: () => delay(10).then(() => setPrinting(true)),
+    onBeforeGetContent: () => delay(1000).then(() => setPrinting(true)),
     onAfterPrint: () => setPrinting(false),
   });
   return (
@@ -43,7 +43,7 @@ export default function AlbumCard({
                 <div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin print:animate-none print:w-48"
+                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin print:animate-none print:w-48 print:h-48"
                     src={album.imageUrl}
                     alt=""
                   />
