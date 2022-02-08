@@ -51,7 +51,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
         </div>
       </div>
       {printing ? (
-        <div className="relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
+        <div className="hidden print:block relative h-48 w-full overflow-visible left-0 right-0 print:w-screen">
           <ResponsiveStream
             data={data}
             keys={keys}
@@ -59,10 +59,14 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             width={800}
             enableGridX={false}
             enableGridY={false}
+            axisBottom={null}
+            axisLeft={null}
+            axisRight={null}
+            axisTop={null}
             isInteractive={false}
             enableStackTooltip={false}
             offsetType="diverging"
-            order="ascending"
+            order="descending"
             colors={{ scheme: "nivo" }}
             fillOpacity={1}
             borderWidth={1}
@@ -89,17 +93,21 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
           />
         </div>
       ) : (
-        <div className="relative h-24 left-0 right-0 rounded-lg overflow-hidden">
+        <div className="print:hidden relative h-24 left-0 right-0 rounded-lg overflow-hidden">
           <ResponsiveStream
             data={data}
             keys={keys}
             height={70}
             enableGridX={false}
             enableGridY={false}
+            axisBottom={null}
+            axisLeft={null}
+            axisRight={null}
+            axisTop={null}
             isInteractive={false}
             enableStackTooltip={false}
             offsetType="diverging"
-            order="ascending"
+            order="descending"
             colors={{ scheme: "nivo" }}
             fillOpacity={1}
             borderWidth={1}
