@@ -83,7 +83,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
               },
             ]}
             fill={Object.entries(people)
-              .filter(([person, checked]) => checked)
+              .filter(([person, val]) => val.checked)
               .map(([person, checked]) => ({
                 match: {
                   id: person,
@@ -124,7 +124,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
               },
             ]}
             fill={Object.entries(people)
-              .filter(([person, checked]) => checked)
+              .filter(([person, val]) => val.checked)
               .map(([person, checked]) => ({
                 match: {
                   id: person,

@@ -3,6 +3,7 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { FilterIcon, MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import { People } from "../pages/unrated";
+import ColorChanger from "./Visualizations/helpers/ColorChanger";
 
 const filters = [
   {
@@ -104,18 +105,24 @@ export default function FilterMenu({
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                              {Object.entries(people).map(([name, checked]) => (
+                              {Object.entries(people).map(([name, values]) => (
                                 <div key={name} className="flex items-center">
+                                  {console.log(values)}
                                   <input
                                     id={`filter-mobile-${name}-${section.id}`}
                                     name={`${section.id}[]`}
                                     type="checkbox"
-                                    defaultChecked={checked}
-                                    className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                    defaultChecked={values.checked}
+                                    className="h-4 w-4 border-gray-300 rounded text-blue-200 focus:ring-blue-300"
                                     onChange={(e) =>
                                       onChange({
                                         ...people,
-                                        ...{ [name]: e.target.checked },
+                                        ...{
+                                          [name]: {
+                                            checked: e.target.checked,
+                                            color: "",
+                                          },
+                                        },
                                       })
                                     }
                                   />
@@ -142,7 +149,7 @@ export default function FilterMenu({
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
-              Albums
+              Album
             </h1>
 
             <div className="flex items-center">
@@ -193,21 +200,34 @@ export default function FilterMenu({
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                            {Object.entries(people).map(([name, checked]) => (
+                            {Object.entries(people).map(([name, values]) => (
                               <div key={name} className="flex items-center">
                                 <input
                                   id={`filter-${section.id}-${name}`}
                                   name={`${section.id}[]`}
                                   type="checkbox"
-                                  defaultChecked={checked}
-                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                  defaultChecked={values.checked}
+                                  className="h-4 w-4 border-gray-300 rounded text-blue-300 focus:ring-blue-400"
                                   onChange={(e) =>
                                     onChange({
                                       ...people,
-                                      ...{ [name]: e.target.checked },
+                                      ...{
+                                        [name]: {
+                                          checked: e.target.checked,
+                                          color: "",
+                                        },
+                                      },
                                     })
                                   }
                                 />
+                                {/* <ColorChanger
+                                  color={values.color}
+                                  changeColor={onChange()}
+                                  data={people}
+                                  name={name}
+                                  checked={values.checked}
+                                /> */}
+                                {console.log(values)}
                                 <label
                                   htmlFor={`filter-${section.id}-${section.id}`}
                                   className="ml-3 text-sm text-gray-600"
@@ -223,8 +243,6 @@ export default function FilterMenu({
                   </Disclosure>
                 ))}
               </form>
-
-              {/* Product grid */}
               <div className="lg:col-span-3">{children}</div>
             </div>
           </section>
