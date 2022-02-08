@@ -25,6 +25,16 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
     setTotalScore(totalScore === 100 ? 6 : 100);
   }
 
+  function hasColor(color) {
+    if (color) {
+      console.log("has color: " + color);
+      return true;
+    } else {
+      console.log("does not have color");
+      return false;
+    }
+  }
+
   return !loading && data ? (
     <div className="w-full h-24 print:h-48 transition-all relative bottom-0 right-0 left-0 rounded-lg overflow-hidden print:rounded-none print:overflow-visible">
       <div onClick={handleClick} className="-scale-x-1 rotate-180">
@@ -68,28 +78,39 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             offsetType="diverging"
             order="descending"
             colors={{ scheme: "nivo" }}
-            fillOpacity={0.9}
+            fillOpacity={1}
             borderWidth={1}
+            borderColor="inherit"
             margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
-            defs={[
-              {
-                id: "dots",
+            defs={Object.entries(people).map(([person, val]) => {
+              if (val.checked) {
+                return {
+                  id: person,
+                  type: "patternDots",
+                  background: "inherit",
+                  color: "#2c998f",
+                  size: 4,
+                  padding: 2,
+                  stagger: true,
+                };
+              }
+              return {
+                id: person,
                 type: "patternDots",
-                background: "inherit",
-                color: "#2c998f",
+                background: val.color,
+                color: val.color,
+                borderWidth: 0,
                 size: 4,
                 padding: 2,
                 stagger: true,
+              };
+            })}
+            fill={Object.entries(people).map(([person, checked]) => ({
+              match: {
+                id: person,
               },
-            ]}
-            fill={Object.entries(people)
-              .filter(([person, val]) => val.checked)
-              .map(([person, checked]) => ({
-                match: {
-                  id: person,
-                },
-                id: "dots",
-              }))}
+              id: person,
+            }))}
           />
         </div>
       ) : (
@@ -111,26 +132,53 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             colors={{ scheme: "nivo" }}
             fillOpacity={1}
             borderWidth={1}
+            borderColor="inherit"
             margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
-            defs={[
-              {
-                id: "dots",
+            defs={Object.entries(people).map(([person, val]) => {
+              if (val.checked) {
+                return {
+                  id: person,
+                  type: "patternDots",
+                  background: "inherit",
+                  color: "#2c998f",
+                  size: 4,
+                  padding: 2,
+                  stagger: true,
+                };
+              }
+              return {
+                id: person,
                 type: "patternDots",
-                background: "inherit",
-                color: "#2c998f",
+                background: val.color,
+                color: val.color,
+                borderWidth: 0,
                 size: 4,
                 padding: 2,
                 stagger: true,
-              },
-            ]}
-            fill={Object.entries(people)
-              .filter(([person, val]) => val.checked)
-              .map(([person, checked]) => ({
-                match: {
-                  id: person,
-                },
-                id: "dots",
-              }))}
+              };
+            })}
+            fill={Object.entries(people).map(([person, val]) =>
+              val.checked
+                ? {
+                    match: {
+                      id: person,
+                    },
+                    id: person,
+                  }
+                : hasColor(val.color)
+                ? {
+                    match: {
+                      id: person,
+                    },
+                    id: person,
+                  }
+                : {
+                    match: {
+                      id: "xyzthiswillneverhappen",
+                    },
+                    id: "dots",
+                  }
+            )}
           />
         </div>
       )}

@@ -21,12 +21,12 @@ const unrated = [
 ];
 
 const people = {
-  Mathias: { checked: false, color: "" },
-  Sandra: { checked: false, color: "" },
-  Sondre: { checked: false, color: "" },
-  Christian: { checked: false, color: "" },
-  Gerhard: { checked: false, color: "" },
-  Kenneth: { checked: false, color: "" },
+  Mathias: { checked: false, color: "#fff" },
+  Sandra: { checked: false, color: null },
+  Sondre: { checked: false, color: null },
+  Christian: { checked: false, color: null },
+  Gerhard: { checked: false, color: null },
+  Kenneth: { checked: false, color: null },
 };
 
 export type People = typeof people;

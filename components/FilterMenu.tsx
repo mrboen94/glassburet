@@ -3,7 +3,7 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { FilterIcon, MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import { People } from "../pages/unrated";
-import ColorChanger from "./Visualizations/helpers/ColorChanger";
+import { HexColorPicker } from "react-colorful";
 
 const filters = [
   {
@@ -26,6 +26,7 @@ export default function FilterMenu({
   children: React.ReactNode;
 }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [currentColor, setCurrentColor] = useState("");
 
   return (
     <div className="bg-white">
@@ -214,20 +215,26 @@ export default function FilterMenu({
                                       ...{
                                         [name]: {
                                           checked: e.target.checked,
-                                          color: "",
+                                          color: values.color,
                                         },
                                       },
                                     })
                                   }
                                 />
-                                {/* <ColorChanger
-                                  color={values.color}
-                                  changeColor={onChange()}
-                                  data={people}
-                                  name={name}
-                                  checked={values.checked}
-                                /> */}
-                                {console.log(values)}
+                                <HexColorPicker
+                                  color={values.color ? values.color : ""}
+                                  onChange={(e) =>
+                                    onChange({
+                                      ...people,
+                                      ...{
+                                        [name]: {
+                                          checked: values.checked,
+                                          color: e,
+                                        },
+                                      },
+                                    })
+                                  }
+                                />
                                 <label
                                   htmlFor={`filter-${section.id}-${section.id}`}
                                   className="ml-3 text-sm text-gray-600"
