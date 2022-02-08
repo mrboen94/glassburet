@@ -21,7 +21,7 @@ const unrated = [
 ];
 
 const people = {
-  Mathias: { checked: false, color: "#fff" },
+  Mathias: { checked: false, color: null },
   Sandra: { checked: false, color: null },
   Sondre: { checked: false, color: null },
   Christian: { checked: false, color: null },
