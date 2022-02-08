@@ -64,8 +64,8 @@ export default function StreamChartSquare({
           <ResponsiveStream
             data={data}
             keys={keys}
-            height={170}
-            width={800}
+            height="170"
+            width="800"
             enableGridX={false}
             enableGridY={false}
             isInteractive={true}
@@ -102,7 +102,7 @@ export default function StreamChartSquare({
           <ResponsiveStream
             data={data}
             keys={keys}
-            height={70}
+            height="70"
             enableGridX={false}
             enableGridY={false}
             isInteractive={true}
