@@ -1,7 +1,8 @@
 import { useReactToPrint } from "react-to-print";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import Scoreboard from "./Scoreboard";
 
 const StreamChartSquareNoSSR = dynamic(
   () => import("../Visualizations/StreamChartSquare"),
@@ -21,6 +22,7 @@ export default function AlbumCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [printing, setPrinting] = useState(false);
+
   const handlePrint = useReactToPrint({
     content: () => ref.current,
     onBeforeGetContent: () => delay(1000).then(() => setPrinting(true)),
@@ -68,13 +70,22 @@ export default function AlbumCard({
           </div>
         </li>
       </div>
-      <button
-        type="button"
-        className="inline-flex xs:hidden items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4 mx-10"
-        onClick={handlePrint}
-      >
-        Print
-      </button>
+      <div className="flex">
+        <button
+          type="button"
+          className="inline-flex xs:hidden items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4 mx-10"
+          onClick={handlePrint}
+        >
+          Print
+        </button>
+        <button
+          type="button"
+          className="inline-flex xs:hidden items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4 mx-10"
+          onClick={handlePrint}
+        >
+          Print
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,9 +1,15 @@
-export default function Scoreboard({ data }: { data: any }) {
+export default function Scoreboard({
+  data,
+  noScores,
+}: {
+  data: any;
+  noScores: boolean;
+}) {
   var score = 0;
   var totalPoints = 0;
   return (
-    <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="flex flex-col print:w-screen print:w-full">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 print:m-0">
         <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="divide-y divide-gray-200">
@@ -13,20 +19,29 @@ export default function Scoreboard({ data }: { data: any }) {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Track number
+                    Sangnummer
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Title
+                    Tittel
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Score
-                  </th>
+                  {noScores ? (
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Skriv dine poeng her
+                    </th>
+                  ) : (
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Poeng
+                    </th>
+                  )}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -48,7 +63,11 @@ export default function Scoreboard({ data }: { data: any }) {
                           score = 0;
                         }
                       })}
-                      {`${Math.round(((score - 1) / totalPoints) * 100)} / 100`}
+                      {!noScores
+                        ? `${Math.round(
+                            ((score - 1) / totalPoints) * 100
+                          )} / 100`
+                        : "             "}
                     </td>
                   </tr>
                 ))}
