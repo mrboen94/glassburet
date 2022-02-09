@@ -105,12 +105,28 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
                 stagger: true,
               };
             })}
-            fill={Object.entries(people).map(([person, checked]) => ({
-              match: {
-                id: person,
-              },
-              id: person,
-            }))}
+            fill={Object.entries(people).map(([person, val]) =>
+              val.checked
+                ? {
+                    match: {
+                      id: person,
+                    },
+                    id: person,
+                  }
+                : hasColor(val.color)
+                ? {
+                    match: {
+                      id: person,
+                    },
+                    id: person,
+                  }
+                : {
+                    match: {
+                      id: "xyzthiswillneverhappen",
+                    },
+                    id: "dots",
+                  }
+            )}
           />
         </div>
       ) : (
