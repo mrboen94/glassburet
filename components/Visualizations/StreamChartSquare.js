@@ -27,10 +27,8 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
 
   function hasColor(color) {
     if (color) {
-      console.log("has color: " + color);
       return true;
     } else {
-      console.log("does not have color");
       return false;
     }
   }

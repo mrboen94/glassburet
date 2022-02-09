@@ -108,7 +108,6 @@ export default function FilterMenu({
                             <div className="space-y-6">
                               {Object.entries(people).map(([name, values]) => (
                                 <div key={name} className="flex items-center">
-                                  {console.log(values)}
                                   <input
                                     id={`filter-mobile-${name}-${section.id}`}
                                     name={`${section.id}[]`}

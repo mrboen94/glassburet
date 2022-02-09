@@ -15,7 +15,6 @@ const Home: NextPage = () => {
   if (!data) return <div>Loading...</div>;
 
   const day = convertApiResponse(data);
-  console.log(day);
 
   return (
     <>
