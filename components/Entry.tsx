@@ -48,11 +48,11 @@ export const DayEntry = ({ entry }: { entry: AppEntry }): JSX.Element => {
     <div className="relative flex items-start space-x-3">
       <div className="relative">
         {isEntryAfter ? (
-          <span className="h-10 w-10 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center ring-8 ring-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-300 text-blue-900 ring-8 ring-white">
             {getIcon(entry.activity)}
           </span>
         ) : (
-          <span className="h-10 w-10 rounded-full bg-green-300 text-green-900 flex items-center justify-center ring-8 ring-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-300 text-green-900 ring-8 ring-white">
             <MdOutlineCheckCircleOutline />
           </span>
         )}

@@ -19,40 +19,40 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
             <tr>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
               >
                 Navn
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
               >
                 Tidsanmerkning
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
               >
                 Treningsanmerkning
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
               >
                 Søleanmerkning
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
               >
                 Totalt
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="divide-y divide-gray-200 bg-white">
             {anmerkninger.map((data: any) => (
               <tr key={data.data[0]}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                   {data.data[0]}
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-500">
@@ -64,7 +64,7 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
                 <td className="px-6 py-4 text-sm text-gray-500">
                   <SoeleAnmerkning number={parseInt(data.data[3], 10)} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                   {parseInt(data.data[1], 10) +
                     parseInt(data.data[2], 10) +
                     parseInt(data.data[3], 10)}

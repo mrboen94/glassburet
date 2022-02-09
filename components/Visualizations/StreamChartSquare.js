@@ -34,17 +34,17 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
   }
 
   return !loading && data ? (
-    <div className="w-full h-24 print:h-48 transition-all relative bottom-0 right-0 left-0 rounded-lg overflow-hidden print:rounded-none print:overflow-visible">
+    <div className="relative bottom-0 right-0 left-0 h-24 w-full overflow-hidden rounded-lg transition-all print:h-48 print:overflow-visible print:rounded-none">
       <div onClick={handleClick} className="-scale-x-1 rotate-180">
         <div className="relative">
           <div
             className="absolute inset-0 flex items-center print:hidden"
             aria-hidden="true"
           >
-            <div className="w-full mx-10 border-t border-gray-300" />
+            <div className="mx-10 w-full border-t border-gray-300" />
           </div>
-          <div className="relative print:absolute print:text-center print:left-1/3 print:right-1/3 print:justify-start flex justify-center">
-            <span className="px-3 mx-auto bg-white print:mt-40 print:p-0 print:bg-transparent print:text-gray-800 text-lg print:text-xl font-medium text-gray-900">
+          <div className="relative flex justify-center print:absolute print:left-1/3 print:right-1/3 print:justify-start print:text-center">
+            <span className="mx-auto bg-white px-3 text-lg font-medium text-gray-900 print:mt-40 print:bg-transparent print:p-0 print:text-xl print:text-gray-800">
               {data.map((person) => {
                 Object.values(person).map((points) => {
                   if (points === parseInt(points, 10)) score = score + points;
@@ -59,7 +59,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
         </div>
       </div>
       {printing ? (
-        <div className="hidden print:block relative h-50 w-full overflow-visible left-0 right-0 print:w-screen">
+        <div className="h-50 relative left-0 right-0 hidden w-full overflow-visible print:block print:w-screen">
           <ResponsiveStream
             data={data}
             keys={keys}
@@ -128,7 +128,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
           />
         </div>
       ) : (
-        <div className="print:hidden relative h-24 left-0 right-0 rounded-lg overflow-hidden">
+        <div className="relative left-0 right-0 h-24 overflow-hidden rounded-lg print:hidden">
           <ResponsiveStream
             data={data}
             keys={keys}

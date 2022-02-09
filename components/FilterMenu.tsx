@@ -35,7 +35,7 @@ export default function FilterMenu({
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="fixed inset-0 flex z-40 lg:hidden"
+            className="fixed inset-0 z-40 flex lg:hidden"
             onClose={setMobileFiltersOpen}
           >
             <Transition.Child
@@ -59,12 +59,12 @@ export default function FilterMenu({
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <div className="ml-auto relative max-w-xs w-full h-full bg-white shadow-xl py-4 pb-12 flex flex-col overflow-y-auto">
-                <div className="px-4 flex items-center justify-between">
+              <div className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+                <div className="flex items-center justify-between px-4">
                   <h2 className="text-lg font-medium text-gray-900">Filters</h2>
                   <button
                     type="button"
-                    className="-mr-2 w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400"
+                    className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
                     onClick={() => setMobileFiltersOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
@@ -85,7 +85,7 @@ export default function FilterMenu({
                       {({ open }) => (
                         <>
                           <h3 className="-mx-2 -my-3 flow-root">
-                            <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
+                            <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">
                                 {section.name}
                               </span>
@@ -113,7 +113,7 @@ export default function FilterMenu({
                                     name={`${section.id}[]`}
                                     type="checkbox"
                                     defaultChecked={values.checked}
-                                    className="h-4 w-4 border-gray-300 rounded text-blue-200 focus:ring-blue-300"
+                                    className="h-4 w-4 rounded border-gray-300 text-blue-200 focus:ring-blue-300"
                                     onChange={(e) =>
                                       onChange({
                                         ...people,
@@ -146,8 +146,8 @@ export default function FilterMenu({
           </Dialog>
         </Transition.Root>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
               Album
             </h1>
@@ -155,17 +155,17 @@ export default function FilterMenu({
             <div className="flex items-center">
               <button
                 type="button"
-                className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
+                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
-                <FilterIcon className="w-5 h-5" aria-hidden="true" />
+                <FilterIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </div>
 
           <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
@@ -179,7 +179,7 @@ export default function FilterMenu({
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
-                          <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
+                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                             <span className="font-medium text-gray-900">
                               {section.name}
                             </span>
@@ -207,7 +207,7 @@ export default function FilterMenu({
                                   name={`${section.id}[]`}
                                   type="checkbox"
                                   defaultChecked={values.checked}
-                                  className="h-4 w-4 border-gray-300 rounded text-blue-300 focus:ring-blue-400"
+                                  className="h-4 w-4 rounded border-gray-300 text-blue-300 focus:ring-blue-400"
                                   onChange={(e) =>
                                     onChange({
                                       ...people,
@@ -221,7 +221,7 @@ export default function FilterMenu({
                                   }
                                 />
                                 <HexColorPicker
-                                  className="w-14 h-8 py-14 px-6"
+                                  className="h-8 w-14 py-14 px-6"
                                   color={values.color ? values.color : ""}
                                   onChange={(e) =>
                                     onChange({

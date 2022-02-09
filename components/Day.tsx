@@ -18,8 +18,8 @@ export const Day = ({ day }: { day: AppDayPlan }): JSX.Element => {
 
   return (
     <>
-      <div className="text-center p-8 max-w-md">
-        <h2 className="text-lg font-semibold text-blue-500 tracking-wide uppercase">
+      <div className="max-w-md p-8 text-center">
+        <h2 className="text-lg font-semibold uppercase tracking-wide text-blue-500">
           <Time />
         </h2>
         <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">

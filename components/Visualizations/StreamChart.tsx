@@ -9,7 +9,7 @@ export default function StreamChart({
   mobile: boolean;
 }) {
   return (
-    <div className="py-12 min-h-96 h-96 w-full">
+    <div className="min-h-96 h-96 w-full py-12">
       <ResponsiveStream
         data={data}
         keys={keys}
