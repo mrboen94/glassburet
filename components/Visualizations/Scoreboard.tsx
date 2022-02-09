@@ -82,9 +82,8 @@ export default function Scoreboard({ data }: { data: any }) {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {datapoint.Song && datapoint.Song}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {!noScores &&
-                      Object.values(datapoint).map((points: any) => {
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 print:opacity-0">
+                      {Object.values(datapoint).map((points: any) => {
                         if (points === parseInt(points, 10)) {
                           score = score + points;
                           totalPoints = totalPoints + 10;
@@ -92,7 +91,8 @@ export default function Scoreboard({ data }: { data: any }) {
                           totalPoints = 0;
                           score = 0;
                         }
-                      })
+                      })}
+                      {!noScores
                         ? `${Math.round(
                             ((score - 1) / totalPoints) * 100
                           )} / 100`

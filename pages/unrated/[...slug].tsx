@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Scoreboard from "../../components/Visualizations/Scoreboard";
 
 const StreamChartNoSSR = dynamic(
