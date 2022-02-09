@@ -2,13 +2,12 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: [
+  content: [
     "./pages/**/*.tsx",
     "./components/**/*.tsx",
     "./components/**/*.js",
     "./pages/**/*.js",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -24,9 +23,6 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require("tailwind-scrollbar"), require("@tailwindcss/typography")],
 };

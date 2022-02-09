@@ -19,7 +19,7 @@ export const ShowMore = ({ show, setShow }: Props): JSX.Element => (
         <MdExpandLess
           className={`-ml-1.5 mr-1 h-5 w-5 text-gray-400 ${
             show ? "rotate-180" : ""
-          } transform duration-200`}
+          } duration-200`}
           aria-hidden="true"
         />
         <span>Previously...</span>
