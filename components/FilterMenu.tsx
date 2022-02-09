@@ -222,7 +222,7 @@ export default function FilterMenu({
                                   }
                                 />
                                 <HexColorPicker
-                                  className="w-14 h-8 pb-14 px-6"
+                                  className="w-14 h-8 py-14 px-6"
                                   color={values.color ? values.color : ""}
                                   onChange={(e) =>
                                     onChange({
