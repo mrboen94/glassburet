@@ -30,7 +30,7 @@ export default function AlbumCard({
   return (
     <div className="flex flex-col">
       <div ref={ref} className="print:w-full print:h-full">
-        <li className="hover:shadow-lg col-span-1 cursor-pointer flex flex-col text-center bg-white print:bg-gradient-radial from-yellow-200 via-yellow-900 to-gray-900 rounded-lg shadow print:shadow-none print:rounded-none print:h-screen print:m-0 print:p-0">
+        <li className="hover:shadow-lg col-span-1 flex flex-col text-center bg-white print:bg-gradient-radial from-yellow-200 via-yellow-900 to-gray-900 rounded-lg shadow print:shadow-none print:rounded-none print:h-screen print:m-0 print:p-0">
           <div className="w-full h-24 print:h-64 mb-0 mt-0 content-center -scale-x-1 rotate-180 print:mb-14 print:w-full">
             <StreamChartSquareNoSSR
               dataUrl={album.url}
@@ -39,7 +39,7 @@ export default function AlbumCard({
             />
           </div>
           <div className="flex flex-col print:h-full">
-            <div className="flex-1 flex flex-col p-8 pb-4">
+            <div className="flex-1 flex flex-col p-8 pb-4 cursor-pointer">
               <Link href={`unrated/${album.url}`} passHref>
                 <div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
