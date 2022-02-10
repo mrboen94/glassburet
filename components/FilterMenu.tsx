@@ -198,16 +198,14 @@ export default function FilterMenu({
                           </Disclosure.Button>
                         </h3>
                         <Disclosure.Panel className="pt-6">
-                          <div className="grid w-max grid-cols-3 space-y-4">
+                          <div className="grid w-max grid-cols-3 xl:grid-cols-4">
                             {Object.entries(people).map(([name, values]) => (
                               <div
                                 key={name}
-                                className="m-2 flex flex-col items-center rounded-lg shadow-md"
+                                className="mx-2 my-2 flex h-max flex-col items-center rounded-lg shadow-lg hover:shadow-md"
                               >
                                 <div>
-                                  <p className="mb-1 text-center text-lg">
-                                    {name}
-                                  </p>
+                                  <p className="text-center text-lg">{name}</p>
                                   <input
                                     id={`filter-${section.id}-${name}`}
                                     name={`${section.id}[]`}

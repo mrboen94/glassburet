@@ -18,8 +18,8 @@ function classNames(...classes: any) {
 export default function Faq() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
+      <div className="mx-auto max-w-7xl md:mx-0">
+        <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200 md:mx-0">
           <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Ofte stilte spørsmål
           </h2>
