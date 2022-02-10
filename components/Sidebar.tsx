@@ -36,7 +36,7 @@ export default function Sidebar() {
   const router = useRouter();
 
   return (
-    <div className="fixed z-40 mb-10 w-full bg-white">
+    <div className="fixed z-40 w-full bg-white">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"

@@ -30,8 +30,8 @@ export default function AlbumCard({
   return (
     <div className="flex flex-col">
       <div ref={ref} className="print:h-full print:w-full">
-        <li className="print:bg-gradient-radial col-span-1 flex flex-col rounded-lg bg-white from-yellow-200 via-yellow-900 to-gray-900 text-center shadow hover:shadow-lg print:m-0 print:h-screen print:rounded-none print:p-0 print:shadow-none">
-          <div className="-scale-x-1 mb-0 mt-0 h-24 w-full rotate-180 content-center print:mb-14 print:h-64 print:w-full">
+        <li className="col-span-1 flex flex-col rounded-lg bg-white from-yellow-200 via-yellow-900 to-gray-900 text-center shadow hover:shadow-lg print:m-0 print:h-screen print:rounded-none print:bg-gradient-radial print:p-0 print:shadow-none">
+          <div className="mb-0 mt-0 h-24 w-full rotate-180 -scale-x-1 content-center print:mb-14 print:h-64 print:w-full">
             <StreamChartSquareNoSSR
               dataUrl={album.url}
               people={people}
@@ -72,7 +72,7 @@ export default function AlbumCard({
       <div className="flex">
         <button
           type="button"
-          className="xs:hidden mx-10 mt-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="xs:hidden mx-10 mt-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-gray-50"
           onClick={handlePrint}
         >
           Print

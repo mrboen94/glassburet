@@ -8,7 +8,7 @@ import { HexColorPicker } from "react-colorful";
 const filters = [
   {
     id: "name",
-    name: "Navn",
+    name: "Filter og farger",
   },
 ];
 
@@ -145,7 +145,7 @@ export default function FilterMenu({
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 md:px-0 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between border-b border-gray-200 pb-6">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
               Album
@@ -164,7 +164,7 @@ export default function FilterMenu({
           </div>
 
           <section aria-labelledby="products-heading" className="pt-6 pb-24">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
@@ -198,27 +198,41 @@ export default function FilterMenu({
                           </Disclosure.Button>
                         </h3>
                         <Disclosure.Panel className="pt-6">
-                          <div className="space-y-4">
+                          <div className="grid w-max grid-cols-3 space-y-4">
                             {Object.entries(people).map(([name, values]) => (
-                              <div key={name} className="flex items-center">
-                                <input
-                                  id={`filter-${section.id}-${name}`}
-                                  name={`${section.id}[]`}
-                                  type="checkbox"
-                                  defaultChecked={values.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-blue-300 focus:ring-blue-400"
-                                  onChange={(e) =>
-                                    onChange({
-                                      ...people,
-                                      ...{
-                                        [name]: {
-                                          checked: e.target.checked,
-                                          color: values.color,
+                              <div
+                                key={name}
+                                className="m-2 flex flex-col items-center rounded-lg shadow-md"
+                              >
+                                <div>
+                                  <p className="mb-1 text-center text-lg">
+                                    {name}
+                                  </p>
+                                  <input
+                                    id={`filter-${section.id}-${name}`}
+                                    name={`${section.id}[]`}
+                                    type="checkbox"
+                                    defaultChecked={values.checked}
+                                    className="h-4 w-4 rounded border-gray-300 text-blue-300 focus:ring-blue-400"
+                                    onChange={(e) =>
+                                      onChange({
+                                        ...people,
+                                        ...{
+                                          [name]: {
+                                            checked: e.target.checked,
+                                            color: values.color,
+                                          },
                                         },
-                                      },
-                                    })
-                                  }
-                                />
+                                      })
+                                    }
+                                  />
+                                  <label
+                                    htmlFor={`filter-${section.id}-${section.id}`}
+                                    className="text-md ml-3 text-gray-600"
+                                  >
+                                    Dotted
+                                  </label>
+                                </div>
                                 <HexColorPicker
                                   className="h-8 w-14 py-14 px-6"
                                   color={values.color ? values.color : ""}
@@ -234,12 +248,6 @@ export default function FilterMenu({
                                     })
                                   }
                                 />
-                                <label
-                                  htmlFor={`filter-${section.id}-${section.id}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
-                                  {name}
-                                </label>
                               </div>
                             ))}
                           </div>
