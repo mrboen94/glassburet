@@ -1,7 +1,6 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  tailwindConfig: "./tailwind.config.js",
   mode: "jit",
   content: [
     "./pages/**/*.tsx",
