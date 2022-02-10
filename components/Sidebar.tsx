@@ -1,7 +1,7 @@
 import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import useRouter from "next/router";
+import { useRouter } from "next/router";
 
 import {
   CalendarIcon,
