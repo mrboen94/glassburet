@@ -6,7 +6,7 @@ export default function Rules() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <div className="relative flex justify-center">
-          <span className="px-3 bg-white text-lg font-medium text-gray-900">
+          <span className="bg-white px-3 text-lg font-medium text-gray-900">
             Del 1: Anmerkninger
           </span>
         </div>
@@ -31,7 +31,7 @@ export default function Rules() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <div className="relative flex justify-center">
-          <span className="px-3 bg-white text-lg font-medium text-gray-900">
+          <span className="bg-white px-3 text-lg font-medium text-gray-900">
             Del 2: Trening
           </span>
         </div>
@@ -53,7 +53,7 @@ export default function Rules() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <div className="relative flex justify-center">
-          <span className="px-3 bg-white text-lg font-medium text-gray-900">
+          <span className="bg-white px-3 text-lg font-medium text-gray-900">
             Del 3: Sykemelding
           </span>
         </div>
@@ -68,7 +68,7 @@ export default function Rules() {
           <div className="w-full border-t border-gray-300" />
         </div>
         <div className="relative flex justify-center">
-          <span className="px-3 bg-white text-lg font-medium text-gray-900">
+          <span className="bg-white px-3 text-lg font-medium text-gray-900">
             Del 4: Master skriving (TBD)
           </span>
         </div>

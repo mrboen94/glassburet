@@ -5,7 +5,7 @@ type VerticalBarProps = {
 export default function VerticalBar({ progress }: VerticalBarProps) {
   return (
     <div>
-      <div className="my-8 absolute top-5 left-5 -ml-px h-3/5 bg-blue-200 animate-pulse w-1">
+      <div className="absolute top-5 left-5 my-8 -ml-px h-3/5 w-1 animate-pulse bg-blue-200">
         <div
           className="bg-green-400"
           style={{

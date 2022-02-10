@@ -39,10 +39,10 @@ export default function Album() {
     <div className="h-full w-11/12 md:max-w-md lg:max-w-lg 2xl:max-w-7xl">
       {!loading && data ? (
         <>
-          <div className="w-full h-full flex flex-col">
+          <div className="flex h-full w-full flex-col">
             <Scoreboard data={data} />
             <StreamChartNoSSR data={data} mobile={mobile} />
-            <div className="hidden absolute top-0 right-0 left-0 bottom-0 h-screen w-screen print:block">
+            <div className="absolute top-0 right-0 left-0 bottom-0 hidden h-screen w-screen print:block">
               <Scoreboard data={data} />
             </div>
           </div>

@@ -22,9 +22,9 @@ const Home: NextPage = () => {
         <title>Glassburet - hvem, hva, hvor</title>
         <link rel="icon" href="/gb.svg" />
       </Head>
-      <main className="w-96 mx-auto">
+      <main className="mx-auto w-96 md:ml-0">
         {!data ? (
-          <div className="mx-0 mt-4 flex place-content-center">
+          <div className="mx-0 mt-4 flex place-content-center md:place-content-start">
             <Loader type="Bars" color="#00BFFF" height={80} width={80} />
           </div>
         ) : (

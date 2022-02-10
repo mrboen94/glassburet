@@ -29,9 +29,9 @@ export default function AlbumCard({
   });
   return (
     <div className="flex flex-col">
-      <div ref={ref} className="print:w-full print:h-full">
-        <li className="hover:shadow-lg col-span-1 flex flex-col text-center bg-white print:bg-gradient-radial from-yellow-200 via-yellow-900 to-gray-900 rounded-lg shadow print:shadow-none print:rounded-none print:h-screen print:m-0 print:p-0">
-          <div className="w-full h-24 print:h-64 mb-0 mt-0 content-center -scale-x-1 rotate-180 print:mb-14 print:w-full">
+      <div ref={ref} className="print:h-full print:w-full">
+        <li className="col-span-1 flex flex-col rounded-lg bg-white from-yellow-200 via-yellow-900 to-gray-900 text-center shadow hover:shadow-lg print:m-0 print:h-screen print:rounded-none print:bg-gradient-radial print:p-0 print:shadow-none">
+          <div className="mb-0 mt-0 h-24 w-full rotate-180 -scale-x-1 content-center print:mb-14 print:h-64 print:w-full">
             <StreamChartSquareNoSSR
               dataUrl={album.url}
               people={people}
@@ -39,26 +39,26 @@ export default function AlbumCard({
             />
           </div>
           <div className="flex flex-col print:h-full">
-            <div className="flex-1 flex flex-col p-8 pb-4 cursor-pointer">
+            <div className="flex flex-1 cursor-pointer flex-col p-8 pb-4">
               <Link href={`unrated/${album.url}`} passHref>
                 <div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:animate-spin print:animate-none print:w-48 print:h-48 print:mt-28"
+                    className="mx-auto h-32 w-32 flex-shrink-0 rounded-full hover:animate-spin print:mt-28 print:h-48 print:w-48 print:animate-none"
                     src={album.imageUrl}
                     alt=""
                   />
-                  <h3 className="mt-6 text-gray-900 text-sm font-medium print:text-2xl">
+                  <h3 className="mt-6 text-sm font-medium text-gray-900 print:text-2xl">
                     {album.name}
                   </h3>
-                  <dl className="mt-1 flex-grow flex flex-col justify-between">
+                  <dl className="mt-1 flex flex-grow flex-col justify-between">
                     <dt className="sr-only">Title</dt>
-                    <dd className="text-gray-500 text-sm print:text-7xl print:text-gray-800">
+                    <dd className="text-sm text-gray-500 print:text-7xl print:text-gray-800">
                       {album.title}
                     </dd>
                     <dt className="sr-only">Artist</dt>
                     <dd className="mt-3">
-                      <span className="px-2 py-1 text-green-800 print:text-yellow-800 print:bg-yellow-100 text-xs font-medium bg-green-100 rounded-full">
+                      <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800 print:bg-yellow-100 print:text-yellow-800">
                         {album.role}
                       </span>
                     </dd>
@@ -72,7 +72,7 @@ export default function AlbumCard({
       <div className="flex">
         <button
           type="button"
-          className="inline-flex xs:hidden items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4 mx-10"
+          className="xs:hidden mx-10 mt-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-gray-50"
           onClick={handlePrint}
         >
           Print

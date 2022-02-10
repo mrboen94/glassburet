@@ -16,7 +16,7 @@ class MyDocument extends Document {
     return (
       <Html
         lang="no"
-        className="h-full scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-blue-300 overflow-y-scroll hover:scrollbar-thumb-green-400"
+        className="h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-blue-300 hover:scrollbar-thumb-green-400"
       >
         <Head>
           <link rel="canonical" href="https://glassburet.netlify.app/" />
