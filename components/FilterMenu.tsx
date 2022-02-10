@@ -26,7 +26,6 @@ export default function FilterMenu({
   children: React.ReactNode;
 }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState("");
 
   return (
     <div className="bg-white">
