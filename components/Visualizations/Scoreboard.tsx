@@ -76,8 +76,11 @@ export default function Scoreboard({ data }: { data: any }) {
               <tbody className="divide-y divide-gray-200 bg-white">
                 {data.map((datapoint: any, idx: number) => (
                   <tr key={datapoint}>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 print:hidden">
                       {idx}
+                    </td>
+                    <td className="hidden whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 print:block">
+                      {idx + 1}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                       {datapoint.Song && datapoint.Song}
