@@ -14,9 +14,9 @@ export default function Scoreboard({ data }: { data: any }) {
   });
   return (
     <div className="flex w-full flex-col">
-      <div className="-my-2 overflow-x-auto print:m-0 sm:-mx-6 lg:-mx-8">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 print:m-0">
         <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
-          <div className="overflow-hidden border-b border-gray-200 shadow print:w-full sm:rounded-lg">
+          <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg print:w-full">
             <table
               className="divide-y divide-gray-200 print:w-full"
               ref={songPrint}
@@ -127,7 +127,7 @@ export default function Scoreboard({ data }: { data: any }) {
       <div className="flex">
         <button
           type="button"
-          className="xs:hidden mx-10 mt-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2"
+          className="xs:hidden mx-10 mt-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 hover:bg-gray-50"
           onClick={printSongList}
         >
           Print list without scores

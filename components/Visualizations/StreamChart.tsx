@@ -1,5 +1,4 @@
 import { ResponsiveStream } from "@nivo/stream";
-import { keys } from "../../lib/keyData";
 
 export default function StreamChart({
   data,
@@ -12,7 +11,7 @@ export default function StreamChart({
     <div className="min-h-96 h-96 w-full py-12">
       <ResponsiveStream
         data={data}
-        keys={keys}
+        keys={Object.keys(data[0]).filter((key) => key !== "Song")}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         axisRight={null}
         axisBottom={{

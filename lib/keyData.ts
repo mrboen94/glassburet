@@ -5,4 +5,7 @@ export const keys = [
   "Christian",
   "Gerhard",
   "Kenneth",
+  "Andres",
+  "Eivind",
+  "Isabell",
 ];

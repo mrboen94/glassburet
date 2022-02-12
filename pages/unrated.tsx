@@ -18,6 +18,20 @@ const unrated = [
     imageUrl: "sondreNilsen.jpg",
     url: "SondreNilsen-RakkIkkePilsen",
   },
+  {
+    name: "Nothing But Thieves",
+    title: "Nothing But Thieves",
+    role: "Alternative rock",
+    imageUrl: "nbt-nbt.jpg",
+    url: "NothingButThieves-NothingButThieves",
+  },
+  {
+    name: "Highasakite",
+    title: "Mother",
+    role: "Indie/Alternative, Pop",
+    imageUrl: "highasakite-mother",
+    url: "Highasakite-Mother",
+  },
 ];
 
 const people = {
@@ -27,6 +41,9 @@ const people = {
   Christian: { checked: false, color: null },
   Gerhard: { checked: false, color: null },
   Kenneth: { checked: false, color: null },
+  Andres: { checked: false, color: null },
+  Eivind: { checked: false, color: null },
+  Isabell: { checked: false, color: null },
 };
 
 export type People = typeof people;

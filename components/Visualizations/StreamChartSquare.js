@@ -1,6 +1,5 @@
 import { ResponsiveStream } from "@nivo/stream";
 import { useEffect, useState } from "react";
-import { keys } from "../../lib/keyData";
 
 export default function StreamChartSquare({ dataUrl, people, printing }) {
   const [dataLink, _] = useState(`/unrated/${dataUrl}.json`);
@@ -35,7 +34,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
 
   return !loading && data ? (
     <div className="relative bottom-0 right-0 left-0 h-24 w-full overflow-hidden rounded-lg transition-all print:h-48 print:overflow-visible print:rounded-none">
-      <div onClick={handleClick} className="-scale-x-1 rotate-180">
+      <div onClick={handleClick} className="rotate-180 -scale-x-1">
         <div className="relative">
           <div
             className="absolute inset-0 flex items-center print:hidden"
@@ -62,8 +61,8 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
         <div className="h-50 relative left-0 right-0 hidden w-full overflow-visible print:block print:w-screen">
           <ResponsiveStream
             data={data}
-            keys={keys}
             height={200}
+            keys={Object.keys(data[0]).filter((key) => key !== "Song")}
             width={794}
             enableGridX={false}
             enableGridY={false}
@@ -131,7 +130,7 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
         <div className="relative left-0 right-0 h-24 overflow-hidden rounded-lg print:hidden">
           <ResponsiveStream
             data={data}
-            keys={keys}
+            keys={Object.keys(data[0]).filter((key) => key !== "Song")}
             height={70}
             enableGridX={false}
             enableGridY={false}
