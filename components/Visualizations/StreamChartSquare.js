@@ -45,7 +45,6 @@ export default function StreamChartSquare({
         setCurrentVis("diverging");
         break;
     }
-    console.log(currentVis);
   }
 
   function hasColor(color) {
