@@ -23,14 +23,14 @@ const unrated = [
     title: "Nothing But Thieves",
     role: "Alternative rock",
     imageUrl: "nbt-nbt.jpg",
-    url: "NothingButThieves-NothingButThieves",
+    url: "nothingButThieves-nothingButThieves",
   },
   {
     name: "Highasakite",
     title: "Mother",
     role: "Indie/Alternative, Pop",
     imageUrl: "highasakite-mother.jpg",
-    url: "Highasakite-Mother",
+    url: "highasakite-mother",
   },
 ];
 
