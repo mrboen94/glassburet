@@ -29,7 +29,7 @@ const unrated = [
     name: "Highasakite",
     title: "Mother",
     role: "Indie/Alternative, Pop",
-    imageUrl: "highasakite-mother",
+    imageUrl: "highasakite-mother.jpg",
     url: "Highasakite-Mother",
   },
 ];
