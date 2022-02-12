@@ -5,6 +5,20 @@ import AlbumCard from "../components/Visualizations/AlbumCard";
 // TODO: Move albums to another file
 const unrated = [
   {
+    name: "Highasakite",
+    title: "Mother",
+    role: "Indie/Alternative, Pop",
+    imageUrl: "highasakite-mother.jpg",
+    url: "highasakite-mother",
+  },
+  {
+    name: "Nothing But Thieves",
+    title: "Nothing But Thieves",
+    role: "Alternative rock",
+    imageUrl: "nbt-nbt.jpg",
+    url: "nothingButThieves-nothingButThieves",
+  },
+  {
     name: "The Weeknd",
     title: "DAWN FM",
     role: "Dance-pop/Synth-pop",
@@ -17,20 +31,6 @@ const unrated = [
     role: "K-pop",
     imageUrl: "sondreNilsen.jpg",
     url: "SondreNilsen-RakkIkkePilsen",
-  },
-  {
-    name: "Nothing But Thieves",
-    title: "Nothing But Thieves",
-    role: "Alternative rock",
-    imageUrl: "nbt-nbt.jpg",
-    url: "nothingButThieves-nothingButThieves",
-  },
-  {
-    name: "Highasakite",
-    title: "Mother",
-    role: "Indie/Alternative, Pop",
-    imageUrl: "highasakite-mother.jpg",
-    url: "highasakite-mother",
   },
 ];
 
