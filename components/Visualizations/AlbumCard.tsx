@@ -2,6 +2,7 @@ import { useReactToPrint } from "react-to-print";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { Theme } from "../../pages/unrated";
 
 const StreamChartSquareNoSSR = dynamic(
   () => import("../Visualizations/StreamChartSquare"),
@@ -15,9 +16,11 @@ function delay(time: number) {
 export default function AlbumCard({
   album,
   people,
+  theme,
 }: {
   album: any;
   people: any;
+  theme: Theme;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [printing, setPrinting] = useState(false);
@@ -36,6 +39,7 @@ export default function AlbumCard({
               dataUrl={album.url}
               people={people}
               printing={printing}
+              theme={theme}
             />
           </div>
           <div className="flex flex-col print:h-full">

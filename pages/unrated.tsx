@@ -46,20 +46,46 @@ const people = {
   Isabell: { checked: false, color: null },
 };
 
+const theme = [
+  { scheme: "nivo" },
+  { scheme: "category10" },
+  { scheme: "accent" },
+  { scheme: "dark2" },
+  { scheme: "paired" },
+  { scheme: "pastel1" },
+  { scheme: "pastel2" },
+  { scheme: "set1" },
+  { scheme: "set2" },
+  { scheme: "set" },
+];
+
 export type People = typeof people;
+export type Theme = typeof theme;
 
 export default function Unrated() {
   const [peopleData, setPeopleData] = useState<typeof people>(people);
+  const [currentTheme, setCurrentTheme] = useState(0);
 
   return (
     <>
-      <FilterMenu people={peopleData} onChange={setPeopleData}>
+      <FilterMenu
+        people={peopleData}
+        onChange={setPeopleData}
+        currentTheme={currentTheme}
+        setCurrentTheme={setCurrentTheme}
+        themes={theme}
+      >
         <ul
           role="list"
           className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3"
         >
           {unrated.map((album, i) => (
-            <AlbumCard key={i} album={album} people={peopleData} />
+            <AlbumCard
+              key={i}
+              album={album}
+              people={peopleData}
+              theme={theme[currentTheme]}
+            />
           ))}
         </ul>
       </FilterMenu>

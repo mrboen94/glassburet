@@ -2,8 +2,9 @@ import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { FilterIcon, MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
-import { People } from "../pages/unrated";
+import { People, Theme } from "../pages/unrated";
 import { HexColorPicker } from "react-colorful";
+import ThemeSelector from "./Visualizations/helpers/ThemeSelector";
 
 const filters = [
   {
@@ -19,10 +20,16 @@ function classNames(...classes: any) {
 export default function FilterMenu({
   people,
   onChange,
+  currentTheme,
+  setCurrentTheme,
+  themes,
   children,
 }: {
   people: People;
   onChange: Function;
+  currentTheme: number;
+  setCurrentTheme: Function;
+  themes: Theme;
   children: React.ReactNode;
 }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -104,6 +111,10 @@ export default function FilterMenu({
                             </Disclosure.Button>
                           </h3>
                           <Disclosure.Panel className="pt-6">
+                            <ThemeSelector
+                              setCurrentTheme={setCurrentTheme}
+                              themes={themes}
+                            />
                             <div className="space-y-6">
                               {Object.entries(people).map(([name, values]) => (
                                 <div key={name} className="flex items-center">
@@ -198,6 +209,10 @@ export default function FilterMenu({
                           </Disclosure.Button>
                         </h3>
                         <Disclosure.Panel className="pt-6">
+                          <ThemeSelector
+                            setCurrentTheme={setCurrentTheme}
+                            themes={themes}
+                          />
                           <div className="grid w-max grid-cols-3 xl:grid-cols-4">
                             {Object.entries(people).map(([name, values]) => (
                               <div
@@ -234,7 +249,7 @@ export default function FilterMenu({
                                 <HexColorPicker
                                   className="h-8 w-14 py-14 px-6"
                                   color={values.color ? values.color : ""}
-                                  onChange={(e) =>
+                                  onChange={(e: any) =>
                                     onChange({
                                       ...people,
                                       ...{

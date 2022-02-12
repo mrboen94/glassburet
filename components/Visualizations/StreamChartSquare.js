@@ -1,11 +1,17 @@
 import { ResponsiveStream } from "@nivo/stream";
 import { useEffect, useState } from "react";
 
-export default function StreamChartSquare({ dataUrl, people, printing }) {
+export default function StreamChartSquare({
+  dataUrl,
+  people,
+  printing,
+  theme,
+}) {
   const [dataLink, _] = useState(`/unrated/${dataUrl}.json`);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [totalScore, setTotalScore] = useState(100);
+  const [currentVis, setCurrentVis] = useState("diverging");
   var score = 0;
   var totalPoints = 0;
 
@@ -22,6 +28,24 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
 
   function handleClick() {
     setTotalScore(totalScore === 100 ? 6 : 100);
+  }
+
+  function switchVisualizations() {
+    switch (currentVis) {
+      case "diverging":
+        setCurrentVis("wiggle");
+        break;
+      case "wiggle":
+        setCurrentVis("silhouette");
+        break;
+      case "silhouette":
+        setCurrentVis("expand");
+        break;
+      default:
+        setCurrentVis("diverging");
+        break;
+    }
+    console.log(currentVis);
   }
 
   function hasColor(color) {
@@ -60,12 +84,15 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
         </div>
       </div>
       {printing ? (
-        <div className="h-50 relative left-0 right-0 hidden w-full overflow-visible print:block print:w-screen">
+        <div
+          className="h-50 relative left-0 right-0 hidden w-full overflow-visible print:block print:w-screen"
+          onClick={switchVisualizations}
+        >
           <ResponsiveStream
             data={data}
-            height={200}
+            height={currentVis === "diverging" ? 200 : 190}
             keys={Object.keys(data[0]).filter((key) => key !== "Song")}
-            width={794}
+            width={795}
             enableGridX={false}
             enableGridY={false}
             axisBottom={null}
@@ -74,13 +101,17 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             axisTop={null}
             isInteractive={false}
             enableStackTooltip={false}
-            offsetType="diverging"
+            offsetType={currentVis}
             order="descending"
-            colors={{ scheme: "nivo" }}
+            colors={theme}
             fillOpacity={1}
             borderWidth={1}
             borderColor="inherit"
-            margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
+            margin={
+              currentVis === "diverging"
+                ? { top: 2, right: 0, bottom: 0, left: 0 }
+                : { top: 2, right: 0, bottom: 2, left: 0 }
+            }
             defs={Object.entries(people).map(([person, val]) => {
               if (val.checked) {
                 return {
@@ -129,11 +160,14 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
           />
         </div>
       ) : (
-        <div className="relative left-0 right-0 h-24 overflow-hidden rounded-lg print:hidden">
+        <div
+          className="relative left-0 right-0 h-24 overflow-hidden rounded-lg print:hidden"
+          onClick={switchVisualizations}
+        >
           <ResponsiveStream
             data={data}
             keys={Object.keys(data[0]).filter((key) => key !== "Song")}
-            height={70}
+            height={currentVis !== "diverging" ? 68 : 70}
             enableGridX={false}
             enableGridY={false}
             axisBottom={null}
@@ -142,13 +176,17 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             axisTop={null}
             isInteractive={false}
             enableStackTooltip={false}
-            offsetType="diverging"
+            offsetType={currentVis}
             order="descending"
-            colors={{ scheme: "nivo" }}
+            colors={theme}
             fillOpacity={1}
             borderWidth={1}
             borderColor="inherit"
-            margin={{ top: 2, right: 0, bottom: 0, left: 0 }}
+            margin={
+              currentVis === "diverging"
+                ? { top: 2, right: 0, bottom: 0, left: 0 }
+                : { top: 2, right: 0, bottom: 2, left: 0 }
+            }
             defs={Object.entries(people).map(([person, val]) => {
               if (val.checked) {
                 return {
