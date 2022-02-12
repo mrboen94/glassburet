@@ -46,7 +46,7 @@ const people = {
   Isabell: { checked: false, color: null },
 };
 
-const theme = [
+const themes = [
   { scheme: "nivo" },
   { scheme: "category10" },
   { scheme: "accent" },
@@ -60,7 +60,7 @@ const theme = [
 ];
 
 export type People = typeof people;
-export type Theme = typeof theme;
+export type Theme = { scheme: string };
 
 export default function Unrated() {
   const [peopleData, setPeopleData] = useState<typeof people>(people);
@@ -73,7 +73,7 @@ export default function Unrated() {
         onChange={setPeopleData}
         currentTheme={currentTheme}
         setCurrentTheme={setCurrentTheme}
-        themes={theme}
+        themes={themes}
       >
         <ul
           role="list"
@@ -84,7 +84,7 @@ export default function Unrated() {
               key={i}
               album={album}
               people={peopleData}
-              theme={theme[currentTheme]}
+              theme={themes[currentTheme]}
             />
           ))}
         </ul>

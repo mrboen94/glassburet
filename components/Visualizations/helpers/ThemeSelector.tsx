@@ -26,7 +26,7 @@ export default function ThemeSelector({
   themes,
 }: {
   setCurrentTheme: Function;
-  themes: Theme;
+  themes: Theme[];
 }) {
   return (
     <Menu as="div" className="relative z-50 inline-block w-full py-4 text-left">

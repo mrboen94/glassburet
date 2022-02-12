@@ -29,7 +29,7 @@ export default function FilterMenu({
   onChange: Function;
   currentTheme: number;
   setCurrentTheme: Function;
-  themes: Theme;
+  themes: Theme[];
   children: React.ReactNode;
 }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
