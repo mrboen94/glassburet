@@ -46,12 +46,14 @@ export default function StreamChartSquare({ dataUrl, people, printing }) {
             <span className="mx-auto bg-white px-3 text-lg font-medium text-gray-900 print:mt-40 print:bg-transparent print:p-0 print:text-xl print:text-gray-800">
               {data.map((person) => {
                 Object.values(person).map((points) => {
-                  if (points === parseInt(points, 10)) score = score + points;
-                  totalPoints = totalPoints + 10;
+                  if (points === parseInt(points, 10)) {
+                    score = score + points;
+                    totalPoints = totalPoints + 10;
+                  }
                 });
               })}
               {`${Math.round(
-                ((score - 1) / (totalPoints - 100)) * totalScore
+                (score / totalPoints) * totalScore
               )} / ${totalScore}`}
             </span>
           </div>

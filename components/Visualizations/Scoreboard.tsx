@@ -87,15 +87,14 @@ export default function Scoreboard({ data }: { data: any }) {
                         if (points === parseInt(points, 10)) {
                           score = score + points;
                           totalPoints = totalPoints + 10;
+                          console.log(score, totalPoints);
                         } else {
                           totalPoints = 0;
                           score = 0;
                         }
                       })}
                       {!noScores
-                        ? `${Math.round(
-                            ((score - 1) / totalPoints) * 100
-                          )} / 100`
+                        ? `${Math.round((score / totalPoints) * 100)} / 100`
                         : ""}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
