@@ -5,6 +5,20 @@ import AlbumCard from "../components/Visualizations/AlbumCard";
 // TODO: Move albums to another file
 const unrated = [
   {
+    name: "Amalie Holt Kleive",
+    title: "Jeg Går Når Andre Løper",
+    role: "Synth-pop",
+    imageUrl: "amalieHoltKleive-jegGårNårAndreLøper.jpg",
+    url: "amalieHoltKleive-jegGårNårAndreLøper",
+  },
+  {
+    name: "Fleetwood Mac",
+    title: "Rumors",
+    role: "Rock/Pop-rock",
+    imageUrl: "fleetwoodMac-rumors.jpg",
+    url: "fleetwoodMac-rumors",
+  },
+  {
     name: "Highasakite",
     title: "Mother",
     role: "Indie/Alternative, Pop",
@@ -25,13 +39,13 @@ const unrated = [
     imageUrl: "dawn_fm.png",
     url: "theWeeknd-DAWN-FM",
   },
-  {
-    name: "Sondre Nilsen",
-    title: "Rakk ikke pilsen",
-    role: "K-pop",
-    imageUrl: "sondreNilsen.jpg",
-    url: "SondreNilsen-RakkIkkePilsen",
-  },
+  // {
+  //   name: "Sondre Nilsen",
+  //   title: "Rakk ikke pilsen",
+  //   role: "K-pop",
+  //   imageUrl: "sondreNilsen.jpg",
+  //   url: "SondreNilsen-RakkIkkePilsen",
+  // },
 ];
 
 const people = {
@@ -39,6 +53,7 @@ const people = {
   Sandra: { checked: false, color: null },
   Sondre: { checked: false, color: null },
   Christian: { checked: false, color: null },
+  Kristoffer: { checked: false, color: null },
   Gerhard: { checked: false, color: null },
   Kenneth: { checked: false, color: null },
   Andres: { checked: false, color: null },
