@@ -5,6 +5,13 @@ import AlbumCard from "../components/Visualizations/AlbumCard";
 // TODO: Move albums to another file
 const unrated = [
   {
+    name: "Volbeat",
+    title: "Servant of the Mind",
+    role: "Heavy Metal/Rockabilly",
+    imageUrl: "volbeat-ServantOfTheMind.jpg",
+    url: "volbeat-servantOfTheMind",
+  },
+  {
     name: "Amalie Holt Kleive",
     title: "Jeg Går Når Andre Løper",
     role: "Synth-pop",
@@ -59,6 +66,7 @@ const people = {
   Andres: { checked: false, color: null },
   Eivind: { checked: false, color: null },
   Isabell: { checked: false, color: null },
+  JanMarius: { checked: false, color: null },
 };
 
 const themes = [
