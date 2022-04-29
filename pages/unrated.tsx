@@ -5,6 +5,34 @@ import AlbumCard from "../components/Visualizations/AlbumCard";
 // TODO: Move albums to another file
 const unrated = [
   {
+    name: "Röyksopp",
+    title: "Profound Mysteries",
+    role: "Dance/Electronic Electronica",
+    imageUrl: "royksopp-profoundMysteries.jpg",
+    url: "røyksopp-profoundMysteries",
+  },
+  {
+    name: "Sticky Fingers",
+    title: "Lekkerboy",
+    role: "Alternative rock",
+    imageUrl: "stifi-lekkerboy.jpg",
+    url: "stickyFingers-lekkerboy",
+  },
+  {
+    name: "Muse",
+    title: "The Resistance",
+    role: "Alternative rock",
+    imageUrl: "muse-theResistance.jpg",
+    url: "muse-theResistance",
+  },
+  {
+    name: "Nothing But Thieves",
+    title: "Broken Machine",
+    role: "Alternative rock",
+    imageUrl: "nbt-brokenMachine.jpg",
+    url: "nothingButThieves-BrokenMachine",
+  },
+  {
     name: "Volbeat",
     title: "Servant of the Mind",
     role: "Heavy Metal/Rockabilly",

@@ -1,0 +1,82 @@
+[
+  {
+    "Song": "(Nothing but) Ashes",
+    "Sandra": 5,
+    "Sondre": 6,
+    "Christian": 4,
+    "Kristoffer": 6,
+    "Mathias": 5
+  },
+  {
+    "Song": "The Ladder",
+    "Sandra": 4,
+    "Sondre": 7,
+    "Christian": 7,
+    "Kristoffer": 8,
+    "Mathias": 6
+  },
+  {
+    "Song": "Impossible",
+    "Sandra": 3,
+    "Sondre": 7,
+    "Christian": 6,
+    "Kristoffer": 7,
+    "Mathias": 6
+  },
+  {
+    "Song": "This time this place",
+    "Sandra": 4,
+    "Sondre": 6,
+    "Christian": 6,
+    "Kristoffer": 7,
+    "Mathias": 6
+  },
+  {
+    "Song": "How the flowers grow",
+    "Sandra": 3,
+    "Sondre": 5,
+    "Christian": 5,
+    "Kristoffer": 5,
+    "Mathias": 5
+  },
+  {
+    "Song": "If you Want me",
+    "Sandra": 7,
+    "Sondre": 5,
+    "Christian": 8,
+    "Kristoffer": 6,
+    "Mathias": 8
+  },
+  {
+    "Song": "There, Beyond the trees",
+    "Sandra": 5,
+    "Sondre": 4,
+    "Christian": 5,
+    "Kristoffer": 7,
+    "Mathias": 5
+  },
+  {
+    "Song": "Breathe",
+    "Sandra": 8,
+    "Sondre": 5,
+    "Christian": 8,
+    "Kristoffer": 6,
+    "Mathias": 7
+  },
+  {
+    "Song": "The Mourning Sun",
+    "Sandra": 6,
+    "Sondre": 5,
+    "Christian": 7,
+    "Kristoffer": 5,
+    "Mathias": 6
+  },
+  {
+    "Song": "Press R",
+    "Sandra": 6,
+    "Sondre": 2,
+    "Christian": 3,
+    "Kristoffer": 5,
+    "Mathias": 5
+  }
+]

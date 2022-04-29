@@ -1,0 +1,101 @@
+[
+  {
+    "Song": "Uprising",
+    "Gerhard": 9,
+    "Sandra": 10,
+    "Sondre": 10,
+    "Kristoffer": 9,
+    "Christian": 10,
+    "Mathias": 10
+  },
+  {
+    "Song": "Resistance",
+    "Gerhard": 4,
+    "Sandra": 8,
+    "Sondre": 10,
+    "Kristoffer": 8,
+    "Christian": 8,
+    "Mathias": 9
+  },
+  {
+    "Song": "Undisclosed Desires",
+    "Gerhard": 5,
+    "Sandra": 10,
+    "Sondre": 9,
+    "Kristoffer": 6,
+    "Christian": 9,
+    "Mathias": 10
+  },
+  {
+    "Song": "United States of Eurasia",
+    "Gerhard": 5,
+    "Sandra": 8,
+    "Sondre": 9,
+    "Kristoffer": 7,
+    "Christian": 4,
+    "Mathias": 8
+  },
+  {
+    "Song": "Guiding Lights",
+    "Gerhard": 4,
+    "Sandra": 9,
+    "Sondre": 9,
+    "Kristoffer": 6,
+    "Christian": 6,
+    "Mathias": 6
+  },
+  {
+    "Song": "Unnatural Selection",
+    "Gerhard": 5,
+    "Sandra": 10,
+    "Sondre": 9,
+    "Kristoffer": 8,
+    "Christian": 9,
+    "Mathias": 9
+  },
+  {
+    "Song": "MK Ultra",
+    "Gerhard": 3,
+    "Sandra": 8,
+    "Sondre": 10,
+    "Kristoffer": 7,
+    "Christian": 8,
+    "Mathias": 8
+  },
+  {
+    "Song": "I Belong To You",
+    "Gerhard": 6,
+    "Sandra": 6,
+    "Sondre": 9,
+    "Kristoffer": 6,
+    "Christian": 6,
+    "Mathias": 6
+  },
+  {
+    "Song": "Exogenesis Pt. 1",
+    "Gerhard": 2,
+    "Sandra": 8,
+    "Sondre": 8,
+    "Kristoffer": 7,
+    "Christian": 9,
+    "Mathias": 7
+  },
+  {
+    "Song": "Exogenesis Pt. 2",
+    "Gerhard": 2,
+    "Sandra": 9,
+    "Sondre": 9,
+    "Kristoffer": 6,
+    "Christian": 5,
+    "Mathias": 8
+  },
+  {
+    "Song": "Exogenesis Pt. 3",
+    "Gerhard": 2,
+    "Sandra": 10,
+    "Sondre": 9,
+    "Kristoffer": 7,
+    "Christian": 6,
+    "Mathias": 8
+  }
+]
