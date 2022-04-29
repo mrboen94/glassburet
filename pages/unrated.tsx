@@ -16,7 +16,7 @@ const unrated = [
     title: "Lekkerboy",
     role: "Alternative rock",
     imageUrl: "stifi-lekkerboy.jpg",
-    url: "stickyFingers-lekkerboy",
+    url: "stickyFingers-Lekkerboy",
   },
   {
     name: "Muse",
