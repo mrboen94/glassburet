@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FilterMenu from "../components/FilterMenu";
 import AlbumCard from "../components/Visualizations/AlbumCard";
+import { getAlbumRatings } from "../lib/sheets";
 
 // TODO: Move albums to another file
 const unrated = [
@@ -113,7 +114,7 @@ const themes = [
 export type People = typeof people;
 export type Theme = { scheme: string };
 
-export default function Unrated() {
+export default function Unrated({ albumRatings }: any) {
   const [peopleData, setPeopleData] = useState<typeof people>(people);
   const [currentTheme, setCurrentTheme] = useState(0);
 
@@ -126,10 +127,20 @@ export default function Unrated() {
         setCurrentTheme={setCurrentTheme}
         themes={themes}
       >
+        {console.log(albumRatings)}
+        {console.log(unrated)}
         <ul
           role="list"
           className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3"
         >
+          {/* {albumRatings.map((album: any) => (
+            <AlbumCard
+              key={album[1]}
+              album={album}
+              people={album[0].scores.map((score: any) => score[0].name)}
+              theme={themes[currentTheme]}
+            />
+          ))} */}
           {unrated.map((album, i) => (
             <AlbumCard
               key={i}
@@ -142,4 +153,12 @@ export default function Unrated() {
       </FilterMenu>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const albumRatings = await getAlbumRatings();
+  return {
+    props: { albumRatings },
+    revalidate: 1,
+  };
 }
