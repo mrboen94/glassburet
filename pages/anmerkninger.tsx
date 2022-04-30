@@ -5,14 +5,15 @@ import {
   TidsAnmerkning,
   TreningsAnmerkning,
 } from "../components/Visualizations/helpers/Anmerkning";
-import { getAnmerkninger } from "../lib/sheets";
+import { getAlbumRatings, getAnmerkninger } from "../lib/sheets";
 
-const Marks: NextPage = ({ anmerkninger }: any) => {
+const Marks: NextPage = ({ anmerkninger, albumRatings }: any) => {
   return (
     <>
       <Head>
         <title>Anmerkninger</title>
       </Head>
+      {console.log(albumRatings)}
       <div>
         <table className="divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -80,9 +81,11 @@ const Marks: NextPage = ({ anmerkninger }: any) => {
 
 export async function getStaticProps() {
   const res = await getAnmerkninger();
+  const albumRes = await getAlbumRatings();
   const anmerkninger = res.slice(1, res.length);
+  const albumRatings = albumRes;
   return {
-    props: { anmerkninger },
+    props: { anmerkninger, albumRatings },
     revalidate: 1,
   };
 }
